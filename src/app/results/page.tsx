@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import ShareButtons from "@/components/share-buttons";
 
 interface SurveyAnswers {
   [questionId: number]: any;
@@ -183,20 +184,7 @@ export default function ResultsPage() {
           </div>
 
           {/* Share Buttons */}
-          <div className="flex flex-wrap gap-2.5 justify-center mt-7">
-            <button className="flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold bg-[#25d366] text-white">
-              <span>📱</span> WhatsApp
-            </button>
-            <button className="flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold bg-[#1da1f2] text-white">
-              <span>🐦</span> Twitter
-            </button>
-            <button className="flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold bg-[#0a66c2] text-white">
-              <span>💼</span> LinkedIn
-            </button>
-            <button className="flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold bg-[#8b1a1a] text-white">
-              <span>🔗</span> Copy Link
-            </button>
-          </div>
+          <ShareButtons />
         </div>
       </div>
 

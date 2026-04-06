@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 interface SurveyAnswers {
   [questionId: number]: any;
@@ -229,6 +230,7 @@ export default function SurveyPage() {
     [key: number]: { [key: number]: boolean };
   }>({});
   const [showSurveyComplete, setShowSurveyComplete] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // Organization form state (includes email)
   const [orgForm, setOrgForm] = useState({
@@ -303,7 +305,7 @@ export default function SurveyPage() {
     window.scrollTo(0, 0);
   };
 
-  const handleFinalSubmit = () => {
+  const handleFinalSubmit = async () => {
     const finalAnswers = {
       surveyAnswers: answers,
       organizationInfo: {
@@ -316,7 +318,28 @@ export default function SurveyPage() {
 
     localStorage.setItem("surveyAnswers", JSON.stringify(finalAnswers));
     console.log("Submitted:", finalAnswers);
-    router.push("/results");
+
+    setIsLoading(true);
+    try {
+      const res = await fetch("/api/survey/submit", {
+        method: "POST",
+        body: JSON.stringify(finalAnswers),
+      });
+      console.log(res);
+      if (!res.ok) {
+        toast.error("error");
+        return;
+      }
+
+      const response = await res.json();
+      console.log(response);
+      toast.success("success");
+      router.push("/results");
+    } catch (error) {
+      toast.error("sorry an error occured");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const isSelected = (optIndex: number): boolean => {
@@ -548,15 +571,17 @@ export default function SurveyPage() {
             <div className="flex gap-4 pt-6">
               <button
                 onClick={() => setShowSurveyComplete(false)}
+                disabled={isLoading}
                 className="flex-1 bg-transparent border border-white/15 text-white/50 px-6 py-3.5 rounded-lg text-[15px] cursor-pointer hover:border-white/30 hover:text-white transition-all"
               >
                 ← Back to Survey
               </button>
               <button
                 onClick={handleFinalSubmit}
+                disabled={isLoading}
                 className="flex-1 bg-[#8b1a1a] text-white px-6 py-3.5 rounded-lg text-[15px] font-semibold hover:bg-[#c0392b] transition-all"
               >
-                Submit Survey →
+                {isLoading ? "loading" : " Submit Survey → "}
               </button>
             </div>
           </div>
@@ -626,7 +651,7 @@ export default function SurveyPage() {
             )}
             <button
               onClick={isLastQuestion ? completeSurvey : nextQuestion}
-              disabled={!hasAnswer()}
+              disabled={!hasAnswer() || isLoading}
               className={`bg-[#8b1a1a] text-white px-8 py-3.5 rounded-lg text-[15px] font-semibold flex items-center gap-2 transition-all hover:bg-[#c0392b] hover:-translate-y-px hover:shadow-[0_8px_20px_rgba(139,26,26,0.3)] disabled:opacity-30 disabled:cursor-not-allowed`}
             >
               {isLastQuestion ? "Complete Survey →" : "Next →"}
