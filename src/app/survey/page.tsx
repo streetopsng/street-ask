@@ -1,4 +1,3 @@
-// app/survey/page.tsx - Complete Survey Page
 "use client";
 
 import { useState } from "react";
@@ -231,13 +230,13 @@ export default function SurveyPage() {
   }>({});
   const [showSurveyComplete, setShowSurveyComplete] = useState(false);
 
-  // Organization form state
+  // Organization form state (includes email)
   const [orgForm, setOrgForm] = useState({
     industry: "",
     companySize: "",
     roleLevel: "",
+    email: "",
   });
-  const [email, setEmail] = useState("");
 
   const total = questions.length;
   const progress = ((currentQ + 1) / total) * 100;
@@ -245,7 +244,18 @@ export default function SurveyPage() {
   const isLastQuestion = currentQ === total - 1;
 
   const selectSingle = (optIndex: number) => {
+    // Store answer with 1-based index
     setAnswers({ ...answers, [q.id]: optIndex });
+
+    // Check if this is question 5 and answer is "No" option (index 3 or 4 in 1-based)
+    if (q.id === 5 && (optIndex === 3 || optIndex === 4)) {
+      // Jump to section 3 (question 9 - THE WORK PART)
+      const section3StartIndex = questions.findIndex((q) => q.id === 9);
+      if (section3StartIndex !== -1) {
+        setCurrentQ(section3StartIndex);
+        window.scrollTo(0, 0);
+      }
+    }
   };
 
   const toggleMulti = (optIndex: number) => {
@@ -266,7 +276,6 @@ export default function SurveyPage() {
 
   const hasAnswer = (): boolean => {
     if (q.type === "enter answer") {
-      // Optional - can skip
       return true;
     }
     if (q.type === "multiple answer") {
@@ -297,8 +306,12 @@ export default function SurveyPage() {
   const handleFinalSubmit = () => {
     const finalAnswers = {
       surveyAnswers: answers,
-      organizationInfo: orgForm,
-      email: email || undefined,
+      organizationInfo: {
+        industry: orgForm.industry,
+        companySize: orgForm.companySize,
+        roleLevel: orgForm.roleLevel,
+      },
+      email: orgForm.email || undefined,
     };
 
     localStorage.setItem("surveyAnswers", JSON.stringify(finalAnswers));
@@ -317,7 +330,6 @@ export default function SurveyPage() {
   };
 
   const renderQuestion = () => {
-    // Section header questions (optional textarea)
     if (q.type === "enter answer" && (!q.options || q.options.length === 0)) {
       return (
         <div className="mb-10">
@@ -337,28 +349,29 @@ export default function SurveyPage() {
       );
     }
 
-    // Regular single answer questions
     if (q.type === "single answer" && q.options) {
       return (
         <div className="flex flex-col gap-3 mb-10">
-          {q.options.map((opt, i) => (
-            <button
-              key={i}
-              onClick={() => selectSingle(i)}
-              className={`flex items-center gap-4 bg-white/5 border rounded-xl p-[18px] text-left transition-all hover:bg-white/9 hover:border-white/25 hover:text-white ${
-                isSelected(i)
-                  ? "bg-red/25 border-[#c0392b] text-white"
-                  : "border-white/10 text-white/80"
-              }`}
-            >
-              <span className="text-sm md:text-[15px]">{opt}</span>
-            </button>
-          ))}
+          {q.options.map((opt, i) => {
+            const optionIndex = i + 1; // 1-based index
+            return (
+              <button
+                key={i}
+                onClick={() => selectSingle(optionIndex)}
+                className={`flex items-center gap-4 bg-white/5 border rounded-xl p-[18px] text-left transition-all hover:bg-white/9 hover:border-white/25 hover:text-white ${
+                  isSelected(optionIndex)
+                    ? "bg-red/25 border-[#c0392b] text-white"
+                    : "border-white/10 text-white/80"
+                }`}
+              >
+                <span className="text-sm md:text-[15px]">{opt}</span>
+              </button>
+            );
+          })}
         </div>
       );
     }
 
-    // Multiple answer questions
     if (q.type === "multiple answer" && q.options) {
       return (
         <>
@@ -366,19 +379,22 @@ export default function SurveyPage() {
             Select all that apply
           </div>
           <div className="flex flex-col gap-3 mb-10">
-            {q.options.map((opt, i) => (
-              <button
-                key={i}
-                onClick={() => toggleMulti(i)}
-                className={`flex items-center gap-4 bg-white/5 border rounded-xl p-[18px] text-left transition-all hover:bg-white/9 hover:border-white/25 hover:text-white ${
-                  isSelected(i)
-                    ? "bg-red/25 border-[#c0392b] text-white"
-                    : "border-white/10 text-white/80"
-                }`}
-              >
-                <span className="text-sm md:text-[15px]">{opt}</span>
-              </button>
-            ))}
+            {q.options.map((opt, i) => {
+              const optionIndex = i + 1; // 1-based index
+              return (
+                <button
+                  key={i}
+                  onClick={() => toggleMulti(optionIndex)}
+                  className={`flex items-center gap-4 bg-white/5 border rounded-xl p-[18px] text-left transition-all hover:bg-white/9 hover:border-white/25 hover:text-white ${
+                    isSelected(optionIndex)
+                      ? "bg-red/25 border-[#c0392b] text-white"
+                      : "border-white/10 text-white/80"
+                  }`}
+                >
+                  <span className="text-sm md:text-[15px]">{opt}</span>
+                </button>
+              );
+            })}
           </div>
         </>
       );
@@ -442,7 +458,7 @@ export default function SurveyPage() {
                 className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-[#c0392b] appearance-none cursor-pointer"
               >
                 <option value="" className="bg-[#1a1009]">
-                  Industry
+                  Select industry
                 </option>
                 <option className="bg-[#1a1009]">Finance & Banking</option>
                 <option className="bg-[#1a1009]">Technology</option>
@@ -469,7 +485,7 @@ export default function SurveyPage() {
                 className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-[#c0392b] appearance-none cursor-pointer"
               >
                 <option value="" className="bg-[#1a1009]">
-                  Company size
+                  Select company size
                 </option>
                 <option className="bg-[#1a1009]">1 to 10</option>
                 <option className="bg-[#1a1009]">11 to 50</option>
@@ -492,7 +508,7 @@ export default function SurveyPage() {
                 className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-[#c0392b] appearance-none cursor-pointer"
               >
                 <option value="" className="bg-[#1a1009]">
-                  Role level
+                  Select role level
                 </option>
                 <option className="bg-[#1a1009]">Founder / Executive</option>
                 <option className="bg-[#1a1009]">Senior Manager</option>
@@ -502,7 +518,7 @@ export default function SurveyPage() {
               </select>
             </div>
 
-            {/* Email - Optional */}
+            {/* Email - Part of organization details */}
             <div className="border-t border-white/8 pt-6 mt-6">
               <label className="text-white font-semibold mb-3 block">
                 Email (Optional)
@@ -513,13 +529,15 @@ export default function SurveyPage() {
               </p>
               <input
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={orgForm.email}
+                onChange={(e) =>
+                  setOrgForm({ ...orgForm, email: e.target.value })
+                }
                 placeholder="your@email.com"
                 className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-[#c0392b]"
               />
               <button
-                onClick={() => setEmail("")}
+                onClick={() => setOrgForm({ ...orgForm, email: "" })}
                 className="text-xs text-white/30 underline bg-none border-none mt-2.5 cursor-pointer hover:text-white/50"
               >
                 Skip for now

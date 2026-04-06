@@ -200,45 +200,6 @@ export default function ResultsPage() {
         </div>
       </div>
 
-      {/* Your Responses Section */}
-      <div className="max-w-[680px] mx-auto px-5 md:px-10 py-15 md:py-[60px]">
-        <h3 className="font-['Playfair_Display'] text-2xl md:text-3xl font-bold text-[#1a1009] mb-2">
-          Your responses
-        </h3>
-        <p className="text-sm text-[#5c4a32] mb-9 leading-relaxed">
-          Here is what you told us. Anonymous and on the record.
-        </p>
-
-        {questions.map((q) => (
-          <div
-            key={q.id}
-            className="bg-white rounded-xl p-6 md:p-7 mb-4 border-l-4 border-[#8b1a1a] shadow-[0_2px_12px_rgba(0,0,0,0.04)]"
-          >
-            <div className="text-[13px] text-[#8a7a68] mb-2 font-medium">
-              {q.text}
-            </div>
-            <div className="text-base font-semibold text-[#1a1009] leading-tight">
-              {getAnswerText(q.id)}
-            </div>
-          </div>
-        ))}
-
-        {answers.demo && (
-          <div className="bg-white rounded-xl p-6 md:p-7 mb-4 border-l-4 border-[#8b1a1a] shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
-            <div className="text-[13px] text-[#8a7a68] mb-2 font-medium">
-              Demographics
-            </div>
-            <div className="text-base font-semibold text-[#1a1009] leading-tight">
-              {answers.demo.industry && `Industry: ${answers.demo.industry}`}
-              <br />
-              {answers.demo.size && `Company size: ${answers.demo.size}`}
-              <br />
-              {answers.demo.role && `Role: ${answers.demo.role}`}
-            </div>
-          </div>
-        )}
-      </div>
-
       {/* Community Strip */}
       <div className="bg-[#1a1009] px-5 md:px-[60px] py-10 md:py-15 text-center">
         <div className="flex items-center justify-center gap-[-8px] mb-4 flex-wrap">
