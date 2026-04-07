@@ -440,7 +440,7 @@ export default function SurveyPage() {
                     : "bg-white/5 border-white/10 text-white/80 hover:bg-white/9 hover:border-white/25"
                 } border`}
               >
-                <span className="text-xl flex-shrink-0">{opt.emoji}</span>
+                {/* <span className="text-xl flex-shrink-0">{opt.emoji}</span> */}
                 <span
                   className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0 transition-all ${
                     isSelected(optionIndex)
