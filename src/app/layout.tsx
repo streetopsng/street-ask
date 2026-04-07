@@ -22,8 +22,7 @@ export const metadata: Metadata = {
   title: "StreetOps",
   description: "Street Ask",
   icons: {
-    icon: "/icon.png",
-    shortcut: "/favicon.ico",
+    icon: [{ url: "/favicon.ico" }, { url: "/icon.png", type: "image/png" }],
     apple: "/icon.png",
   },
 };
