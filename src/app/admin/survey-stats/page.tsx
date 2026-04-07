@@ -4,25 +4,21 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
-// Question texts for display
+// Question texts for display - ONLY the 13 questions you have
 const questionTexts: { [key: number]: string } = {
   1: "How common is romantic attraction between colleagues?",
   2: "Have you ever had romantic feelings for someone you worked with?",
   3: "How many people do you know who were involved with a colleague?",
-  4: "What Actually Happens (Open ended)",
   5: "Have you ever been in a romantic relationship with a colleague?",
   6: "How did it start? (Select all that apply)",
   7: "Was the relationship between same level or senior?",
   8: "Did anyone at work find out?",
-  9: "THE WORK PART (Open ended)",
   10: "What happens to work performance?",
   11: "Have you ever felt uncomfortable?",
   12: "If relationship ended badly, what happens?",
-  13: "WHAT DOES THE ORGANIZATION DO? (Open ended)",
   14: "Does your organisation have a formal policy?",
   15: "Who would you tell first?",
   16: "Do Nigerian workplaces handle this well?",
-  17: "Final thoughts (Open ended)",
 };
 
 // Map answer values to readable text
@@ -119,41 +115,6 @@ const optionLabels: { [key: number]: { [key: number]: string } } = {
   },
 };
 
-// Helper to get readable answer text
-const getAnswerLabel = (questionId: number, answerValue: any): string => {
-  // Handle text answers (open ended questions)
-  if ([4, 9, 13, 17].includes(questionId)) {
-    const text = answerValue?.text || answerValue;
-    return text
-      ? text.length > 50
-        ? text.substring(0, 50) + "..."
-        : text
-      : "No response";
-  }
-
-  // Handle single choice answers (just a number)
-  if (typeof answerValue === "number") {
-    return optionLabels[questionId]?.[answerValue] || `Option ${answerValue}`;
-  }
-
-  // Handle multiple choice answers (object with true/false)
-  if (typeof answerValue === "object" && !Array.isArray(answerValue)) {
-    const selected = Object.entries(answerValue)
-      .filter(([, selected]) => selected === true)
-      .map(
-        ([key]) => optionLabels[questionId]?.[parseInt(key)] || `Option ${key}`,
-      );
-    return selected.length > 0 ? selected.join(", ") : "None selected";
-  }
-
-  // Handle scale answers
-  if (typeof answerValue === "object" && answerValue.rating) {
-    return `Rating: ${answerValue.rating}/5`;
-  }
-
-  return String(answerValue);
-};
-
 export default function AdminPage() {
   const [stats, setStats] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -195,9 +156,7 @@ export default function AdminPage() {
     );
   }
 
-  // Questions that are open-ended (just show sample responses)
-  const openEndedQuestions = [4, 9, 13, 17];
-  // Regular questions with percentages
+  // Your actual 13 questions
   const regularQuestions = [1, 2, 3, 5, 6, 7, 8, 10, 11, 12, 14, 15, 16];
 
   return (
@@ -227,10 +186,11 @@ export default function AdminPage() {
       </div>
 
       <div className="max-w-[1400px] mx-auto px-5 md:px-10 py-10">
-        {/* ALL QUESTIONS ON ONE PAGE - No need to click through */}
         <div className="space-y-6">
-          {regularQuestions.map((questionId) => {
+          {regularQuestions.map((questionId, index) => {
             const questionStats = stats?.analytics?.[questionId] || [];
+
+            // Calculate total responses for this question
             const totalForQuestion = questionStats.reduce(
               (sum: number, item: any) => sum + item.count,
               0,
@@ -252,7 +212,7 @@ export default function AdminPage() {
                 >
                   <div>
                     <span className="text-[#c0392b] font-bold text-sm">
-                      Q{questionId}
+                      Q{index + 1}
                     </span>
                     <h3 className="text-white font-semibold text-lg mt-1">
                       {questionTexts[questionId]}
@@ -269,97 +229,40 @@ export default function AdminPage() {
                 {/* Expandable content */}
                 {expandedQuestion === questionId && (
                   <div className="px-6 pb-6 space-y-4">
-                    {questionStats.map((item: any, idx: number) => {
-                      const label = getAnswerLabel(
-                        questionId,
-                        item.answerValue,
-                      );
-                      return (
-                        <div key={idx} className="space-y-2">
-                          <div className="flex justify-between items-center">
-                            <span className="text-white/70 text-sm">
-                              {label}
-                            </span>
-                            <div className="text-right">
-                              <span className="text-[#c0392b] font-bold">
-                                {item.percentage}%
+                    {questionStats.length === 0 ? (
+                      <p className="text-white/40 text-center py-4">
+                        No responses yet
+                      </p>
+                    ) : (
+                      questionStats.map((item: any, idx: number) => {
+                        const label =
+                          optionLabels[questionId]?.[item.answerValue] ||
+                          `Option ${item.answerValue}`;
+                        return (
+                          <div key={idx} className="space-y-2">
+                            <div className="flex justify-between items-center">
+                              <span className="text-white/70 text-sm">
+                                {label}
                               </span>
-                              <span className="text-white/40 text-xs ml-2">
-                                ({item.count})
-                              </span>
+                              <div className="text-right">
+                                <span className="text-[#c0392b] font-bold">
+                                  {item.percentage}%
+                                </span>
+                                <span className="text-white/40 text-xs ml-2">
+                                  ({item.count})
+                                </span>
+                              </div>
                             </div>
+                            {renderPercentageBar(item.percentage)}
                           </div>
-                          {renderPercentageBar(item.percentage)}
-                        </div>
-                      );
-                    })}
+                        );
+                      })
+                    )}
                   </div>
                 )}
               </div>
             );
           })}
-
-          {/* Open Ended Questions Section - Show sample responses */}
-          <div className="bg-white/5 rounded-xl overflow-hidden border border-white/10">
-            <button
-              onClick={() =>
-                setExpandedQuestion(expandedQuestion === 999 ? null : 999)
-              }
-              className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/5 transition-colors"
-            >
-              <div>
-                <h3 className="text-white font-semibold text-lg">
-                  📝 Open Ended Responses
-                </h3>
-                <p className="text-white/40 text-sm">
-                  What people actually said
-                </p>
-              </div>
-              <div className="text-white/40 text-sm">
-                {expandedQuestion === 999 ? "▼" : "▶"}
-              </div>
-            </button>
-
-            {expandedQuestion === 999 && (
-              <div className="px-6 pb-6">
-                {openEndedQuestions.map((questionId) => {
-                  const responses = stats?.analytics?.[questionId] || [];
-                  return (
-                    <div key={questionId} className="mb-6 last:mb-0">
-                      <h4 className="text-[#c0392b] font-semibold mb-3">
-                        Q{questionId}: {questionTexts[questionId]}
-                      </h4>
-                      <div className="space-y-2 max-h-64 overflow-y-auto">
-                        {responses
-                          .slice(0, 10)
-                          .map((item: any, idx: number) => {
-                            const text = getAnswerLabel(
-                              questionId,
-                              item.answerValue,
-                            );
-                            return (
-                              <div
-                                key={idx}
-                                className="bg-white/5 rounded-lg p-3"
-                              >
-                                <p className="text-white/70 text-sm">
-                                  "{text}"
-                                </p>
-                              </div>
-                            );
-                          })}
-                        {responses.length === 0 && (
-                          <p className="text-white/40 text-sm italic">
-                            No responses yet
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
         </div>
 
         {/* Demographics Section - Always visible */}

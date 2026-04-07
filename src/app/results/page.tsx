@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import ShareButtons from "@/components/share-buttons";
+import toast from "react-hot-toast";
 
 interface SurveyAnswers {
   [questionId: number]: any;
@@ -17,6 +18,26 @@ interface SurveyAnswers {
 export default function ResultsPage() {
   const router = useRouter();
   const [answers, setAnswers] = useState<SurveyAnswers>({});
+  const [totalResponses, setTotalResponses] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  // Fetch total response count from API
+  const fetchTotalResponses = async () => {
+    try {
+      const res = await fetch("/api/survey");
+      if (!res.ok) {
+        toast.error("sorry, something went wrong");
+        return;
+      }
+      const response = await res.json();
+      setTotalResponses(Number(response.data.count));
+    } catch (error) {
+      console.error("Failed to fetch total responses:", error);
+      toast.error("something went wrong, please reload the page");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     const stored = localStorage.getItem("surveyAnswers");
@@ -24,6 +45,7 @@ export default function ResultsPage() {
       setAnswers(JSON.parse(stored));
       console.log("Submitted Answers:", JSON.parse(stored));
     }
+    fetchTotalResponses();
   }, []);
 
   const questions = [
@@ -120,6 +142,9 @@ export default function ResultsPage() {
     return String(answer);
   };
 
+  // Calculate the "others" count (total responses minus the 6 avatars shown)
+  const othersCount = Math.max(0, totalResponses - 6);
+
   return (
     <div className="min-h-screen bg-[#f5efe6]">
       {/* Hero Section */}
@@ -188,6 +213,9 @@ export default function ResultsPage() {
         </div>
       </div>
 
+      {/* Your Responses Section - Hidden since you removed it from the design */}
+      {/* Keeping it commented in case you want to add it back later */}
+
       {/* Community Strip */}
       <div className="bg-[#1a1009] px-5 md:px-[60px] py-10 md:py-15 text-center">
         <div className="flex items-center justify-center gap-[-8px] mb-4 flex-wrap">
@@ -209,14 +237,23 @@ export default function ResultsPage() {
           <div className="w-10 h-10 rounded-full border-2 border-[#1a1009] text-xl flex items-center justify-center bg-[#ede4d7] -ml-2">
             👨🏿
           </div>
-          <span className="ml-2 text-sm font-semibold text-white/60">
-            +307 others
-          </span>
+          {!isLoading && othersCount > 0 && (
+            <span className="ml-2 text-sm font-semibold text-white/60">
+              +{othersCount} other{othersCount !== 1 ? "s" : ""}
+            </span>
+          )}
+          {isLoading && (
+            <span className="ml-2 text-sm font-semibold text-white/60">
+              loading...
+            </span>
+          )}
         </div>
         <h3 className="font-['Playfair_Display'] text-2xl md:text-3xl text-white mb-2">
           You are one of{" "}
-          <em className="text-[#d4956a] italic not-italic">313</em> Nigerian
-          workers who spoke up.
+          <em className="text-[#d4956a] italic not-italic">
+            {isLoading ? "..." : totalResponses.toLocaleString()}
+          </em>{" "}
+          Nigerian workers who spoke up.
         </h3>
         <p className="text-sm text-white/40 mb-6">
           The report drops in April. We will tell you what everyone said.

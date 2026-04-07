@@ -65,7 +65,7 @@ export const POST = async (req: NextRequest) => {
     console.log(error);
 
     return NextResponse.json(
-      { success: false, message: "message to submit answers" },
+      { success: false, message: "an error occured" },
       { status: 500 },
     );
   } finally {

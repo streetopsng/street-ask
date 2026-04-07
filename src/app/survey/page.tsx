@@ -12,7 +12,7 @@ interface Question {
   id: number;
   question: string;
   section?: number;
-  options?: string[];
+  options?: any[];
   type: string;
 }
 
@@ -23,11 +23,19 @@ const questions: Question[] = [
       "In your honest opinion, how common is romantic attraction between colleagues in Nigerian workplaces?",
     section: 1,
     options: [
-      "Very common — it happens everywhere",
-      "Fairly common — more than people admit",
-      "It happens but people keep it quiet",
-      "Rare — most people are professional about it",
-      "I genuinely don't know",
+      { letter: "A", emoji: "❤️", text: "Very common — it happens everywhere" },
+      {
+        letter: "B",
+        emoji: "🔥",
+        text: "Fairly common — more than people admit",
+      },
+      { letter: "C", emoji: "🤫", text: "It happens but people keep it quiet" },
+      {
+        letter: "D",
+        emoji: "💼",
+        text: "Rare — most people are professional about it",
+      },
+      { letter: "E", emoji: "🤷", text: "I genuinely don't know" },
     ],
     type: "single answer",
   },
@@ -37,10 +45,10 @@ const questions: Question[] = [
       "Have you ever had romantic feelings for someone you worked with?",
     section: 1,
     options: [
-      "Yes, and I acted on it",
-      "Yes, but I kept it to myself",
-      "No, never",
-      "I'm not sure — maybe",
+      { letter: "A", emoji: "💕", text: "Yes, and I acted on it" },
+      { letter: "B", emoji: "🤐", text: "Yes, but I kept it to myself" },
+      { letter: "C", emoji: "❌", text: "No, never" },
+      { letter: "D", emoji: "🤔", text: "I'm not sure — maybe" },
     ],
     type: "single answer",
   },
@@ -50,175 +58,254 @@ const questions: Question[] = [
       "At your current or most recent workplace, how many people do you know of who were or are romantically involved with a colleague?",
     section: 1,
     options: [
-      "None that I know of",
-      "One or two people",
-      "A lot — it's practically an open secret",
-      "I'd rather not say",
+      { letter: "A", emoji: "0️⃣", text: "None that I know of" },
+      { letter: "B", emoji: "1️⃣", text: "One or two people" },
+      {
+        letter: "C",
+        emoji: "🔓",
+        text: "A lot — it's practically an open secret",
+      },
+      { letter: "D", emoji: "🤫", text: "I'd rather not say" },
     ],
     type: "single answer",
   },
   {
-    id: 4,
-    question: "What Actually Happens",
-    section: 2,
-    type: "enter answer",
-  },
-  {
     id: 5,
     question: "Have you ever been in a romantic relationship with a colleague?",
-    options: [
-      "Yes, but it started after one of us left",
-      "Yes, while we were at the same company",
-      "No, but it came close",
-      "No, never",
-    ],
     section: 2,
+    options: [
+      {
+        letter: "A",
+        emoji: "💔",
+        text: "Yes, but it started after one of us left",
+      },
+      {
+        letter: "B",
+        emoji: "💑",
+        text: "Yes, while we were at the same company",
+      },
+      { letter: "C", emoji: "🏃", text: "No, but it came close" },
+      { letter: "D", emoji: "🚫", text: "No, never" },
+    ],
     type: "single answer",
   },
   {
     id: 6,
     question: "How did it start? Select all that apply.",
-    options: [
-      "Working closely together on a project",
-      "After-work drinks or a team event",
-      "WhatsApp or DM conversations that shifted",
-      "It was obvious from day one",
-      "One person made a move",
-      "It just happened gradually — no clear moment",
-      "Prefer not to say",
-    ],
     section: 2,
+    options: [
+      {
+        letter: "A",
+        emoji: "📋",
+        text: "Working closely together on a project",
+      },
+      { letter: "B", emoji: "🍻", text: "After-work drinks or a team event" },
+      {
+        letter: "C",
+        emoji: "💬",
+        text: "WhatsApp or DM conversations that shifted",
+      },
+      { letter: "D", emoji: "👀", text: "It was obvious from day one" },
+      { letter: "E", emoji: "💪", text: "One person made a move" },
+      {
+        letter: "F",
+        emoji: "🌀",
+        text: "It just happened gradually — no clear moment",
+      },
+      { letter: "G", emoji: "🤐", text: "Prefer not to say" },
+    ],
     type: "multiple answer",
   },
   {
     id: 7,
     question:
       "Was the relationship between people at the same level, or was one person senior to the other?",
-    options: [
-      "Same level",
-      "One person was more senior",
-      "Significant seniority gap — manager and direct report",
-      "Not applicable",
-      "Prefer not to say",
-    ],
     section: 2,
+    options: [
+      { letter: "A", emoji: "🤝", text: "Same level" },
+      { letter: "B", emoji: "⬆️", text: "One person was more senior" },
+      {
+        letter: "C",
+        emoji: "📊",
+        text: "Significant seniority gap — manager and direct report",
+      },
+      { letter: "D", emoji: "❓", text: "Not applicable" },
+      { letter: "E", emoji: "🤐", text: "Prefer not to say" },
+    ],
     type: "single answer",
   },
   {
     id: 8,
     question: "Did anyone at work find out?",
-    options: [
-      "Yes — most people knew",
-      "Yes — a few people knew",
-      "Only one or two people",
-      "No — it was completely private",
-      "Prefer not to say",
-    ],
     section: 2,
+    options: [
+      { letter: "A", emoji: "👥", text: "Yes — most people knew" },
+      { letter: "B", emoji: "👤", text: "Yes — a few people knew" },
+      { letter: "C", emoji: "🔍", text: "Only one or two people" },
+      { letter: "D", emoji: "🔒", text: "No — it was completely private" },
+      { letter: "E", emoji: "🤐", text: "Prefer not to say" },
+    ],
     type: "single answer",
-  },
-  {
-    id: 9,
-    question: "THE WORK PART",
-    section: 3,
-    type: "enter answer",
   },
   {
     id: 10,
     question:
       "In your experience or observation, what tends to happen to work performance when two colleagues are romantically involved?",
-    options: [
-      "Performance improves — they work harder and better together",
-      "No real change — they keep it professional",
-      "It depends entirely on how they handle it",
-      "Performance drops — the distraction is real",
-      "It creates problems for the whole team, not just them",
-    ],
     section: 3,
+    options: [
+      {
+        letter: "A",
+        emoji: "📈",
+        text: "Performance improves — they work harder and better together",
+      },
+      {
+        letter: "B",
+        emoji: "➡️",
+        text: "No real change — they keep it professional",
+      },
+      {
+        letter: "C",
+        emoji: "🎲",
+        text: "It depends entirely on how they handle it",
+      },
+      {
+        letter: "D",
+        emoji: "📉",
+        text: "Performance drops — the distraction is real",
+      },
+      {
+        letter: "E",
+        emoji: "💥",
+        text: "It creates problems for the whole team, not just them",
+      },
+    ],
     type: "single answer",
   },
   {
     id: 11,
     question:
       "Have you ever felt uncomfortable at work because of a romantic situation involving your colleagues — not yourself?",
-    options: [
-      "Yes, significantly — it affected the team dynamic",
-      "Yes, mildly — it was awkward but manageable",
-      "Not really — I stayed out of it",
-      "No, never",
-    ],
     section: 3,
+    options: [
+      {
+        letter: "A",
+        emoji: "😰",
+        text: "Yes, significantly — it affected the team dynamic",
+      },
+      {
+        letter: "B",
+        emoji: "😬",
+        text: "Yes, mildly — it was awkward but manageable",
+      },
+      { letter: "C", emoji: "😐", text: "Not really — I stayed out of it" },
+      { letter: "D", emoji: "😌", text: "No, never" },
+    ],
     type: "single answer",
   },
   {
     id: 12,
     question:
       "If a romantic relationship between two colleagues ended badly, what usually happens?",
-    options: [
-      "One person leaves the company eventually",
-      "They manage to stay professional — it's awkward but it works",
-      "The whole team feels it for months",
-      "It depends on the seniority of the people involved",
-      "I've never seen it end badly",
-      "I've never seen it end well",
-    ],
     section: 3,
+    options: [
+      {
+        letter: "A",
+        emoji: "🚪",
+        text: "One person leaves the company eventually",
+      },
+      {
+        letter: "B",
+        emoji: "🤝",
+        text: "They manage to stay professional — it's awkward but it works",
+      },
+      { letter: "C", emoji: "💔", text: "The whole team feels it for months" },
+      {
+        letter: "D",
+        emoji: "⚖️",
+        text: "It depends on the seniority of the people involved",
+      },
+      { letter: "E", emoji: "👀", text: "I've never seen it end badly" },
+      { letter: "F", emoji: "😢", text: "I've never seen it end well" },
+    ],
     type: "single answer",
-  },
-  {
-    id: 13,
-    question: "WHAT DOES THE ORGANIZATION DO?",
-    section: 4,
-    type: "enter answer",
   },
   {
     id: 14,
     question:
       "Does your current or most recent organisation have any formal policy on romantic relationships between colleagues?",
-    options: [
-      "Yes and I know what it says",
-      "Yes but I have never read it",
-      "I think there is one but I'm not sure",
-      "There is definitely no policy",
-      "I don't know",
-    ],
     section: 4,
+    options: [
+      { letter: "A", emoji: "✅", text: "Yes and I know what it says" },
+      { letter: "B", emoji: "📄", text: "Yes but I have never read it" },
+      {
+        letter: "C",
+        emoji: "🤔",
+        text: "I think there is one but I'm not sure",
+      },
+      { letter: "D", emoji: "❌", text: "There is definitely no policy" },
+      { letter: "E", emoji: "🤷", text: "I don't know" },
+    ],
     type: "single answer",
   },
   {
     id: 15,
     question:
       "If you found yourself in a romantic situation with a colleague, who would you tell first?",
-    options: [
-      "Nobody — I'd keep it completely private",
-      "A close colleague I trust",
-      "HR or management — I'd want to be transparent",
-      "Whoever seemed relevant when it became necessary",
-      "My friends outside work, not anyone at the company",
-    ],
     section: 4,
+    options: [
+      {
+        letter: "A",
+        emoji: "🤐",
+        text: "Nobody — I'd keep it completely private",
+      },
+      { letter: "B", emoji: "👥", text: "A close colleague I trust" },
+      {
+        letter: "C",
+        emoji: "🏢",
+        text: "HR or management — I'd want to be transparent",
+      },
+      {
+        letter: "D",
+        emoji: "⏰",
+        text: "Whoever seemed relevant when it became necessary",
+      },
+      {
+        letter: "E",
+        emoji: "👨‍👩‍👧",
+        text: "My friends outside work, not anyone at the company",
+      },
+    ],
     type: "single answer",
   },
   {
     id: 16,
     question:
       "Overall, do you think Nigerian workplaces handle romantic relationships between colleagues well?",
+    section: 4,
     options: [
-      "Yes — most organisations manage it professionally",
-      "Somewhat — they manage the obvious cases but ignore the rest",
-      "No — it's either ignored completely or handled badly when it surfaces",
-      "It shouldn't need managing — it's personal",
-      "I've never thought about it",
+      {
+        letter: "A",
+        emoji: "🏆",
+        text: "Yes — most organisations manage it professionally",
+      },
+      {
+        letter: "B",
+        emoji: "⚡",
+        text: "Somewhat — they manage the obvious cases but ignore the rest",
+      },
+      {
+        letter: "C",
+        emoji: "❌",
+        text: "No — it's either ignored completely or handled badly when it surfaces",
+      },
+      {
+        letter: "D",
+        emoji: "💭",
+        text: "It shouldn't need managing — it's personal",
+      },
+      { letter: "E", emoji: "🤔", text: "I've never thought about it" },
     ],
-    section: 4,
     type: "single answer",
-  },
-  {
-    id: 17,
-    question:
-      "One last thing — and this is entirely optional. In your experience, what actually happens when two colleagues get together at a Nigerian workplace? Tell us what you've seen, heard, or lived. Anonymous. Real answers only.",
-    section: 4,
-    type: "enter answer",
   },
 ];
 
@@ -232,7 +319,6 @@ export default function SurveyPage() {
   const [showSurveyComplete, setShowSurveyComplete] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  // Organization form state (includes email)
   const [orgForm, setOrgForm] = useState({
     industry: "",
     companySize: "",
@@ -246,13 +332,10 @@ export default function SurveyPage() {
   const isLastQuestion = currentQ === total - 1;
 
   const selectSingle = (optIndex: number) => {
-    // Store answer with 1-based index
     setAnswers({ ...answers, [q.id]: optIndex });
 
-    // Check if this is question 5 and answer is "No" option (index 3 or 4 in 1-based)
     if (q.id === 5 && (optIndex === 3 || optIndex === 4)) {
-      // Jump to section 3 (question 9 - THE WORK PART)
-      const section3StartIndex = questions.findIndex((q) => q.id === 9);
+      const section3StartIndex = questions.findIndex((q) => q.id === 10);
       if (section3StartIndex !== -1) {
         setCurrentQ(section3StartIndex);
         window.scrollTo(0, 0);
@@ -272,14 +355,7 @@ export default function SurveyPage() {
     setAnswers({ ...answers, [q.id]: updated });
   };
 
-  const handleTextAnswer = (value: string) => {
-    setAnswers({ ...answers, [q.id]: value });
-  };
-
   const hasAnswer = (): boolean => {
-    if (q.type === "enter answer") {
-      return true;
-    }
     if (q.type === "multiple answer") {
       return Object.keys(multiSelected[q.id] || {}).length > 0;
     }
@@ -325,14 +401,10 @@ export default function SurveyPage() {
         method: "POST",
         body: JSON.stringify(finalAnswers),
       });
-      console.log(res);
       if (!res.ok) {
         toast.error("error");
         return;
       }
-
-      const response = await res.json();
-      console.log(response);
       toast.success("success");
       router.push("/results");
     } catch (error) {
@@ -353,41 +425,32 @@ export default function SurveyPage() {
   };
 
   const renderQuestion = () => {
-    if (q.type === "enter answer" && (!q.options || q.options.length === 0)) {
-      return (
-        <div className="mb-10">
-          <div className="text-center mb-8">
-            <div className="inline-block bg-[#c0392b]/20 text-[#c0392b] px-6 py-2 rounded-full text-sm font-semibold">
-              Section {q.section}
-            </div>
-          </div>
-          <textarea
-            placeholder="Type your answer here... (optional)"
-            value={answers[q.id] || ""}
-            onChange={(e) => handleTextAnswer(e.target.value)}
-            className="w-full bg-white/5 border border-white/10 rounded-xl p-5 text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-[#c0392b] resize-none min-h-[150px]"
-          />
-          <p className="text-white/30 text-xs mt-2 text-right">Optional</p>
-        </div>
-      );
-    }
-
     if (q.type === "single answer" && q.options) {
       return (
         <div className="flex flex-col gap-3 mb-10">
           {q.options.map((opt, i) => {
-            const optionIndex = i + 1; // 1-based index
+            const optionIndex = i + 1;
             return (
               <button
                 key={i}
                 onClick={() => selectSingle(optionIndex)}
-                className={`flex items-center gap-4 bg-white/5 border rounded-xl p-[18px] text-left transition-all hover:bg-white/9 hover:border-white/25 hover:text-white ${
+                className={`flex items-center gap-4 rounded-xl p-[18px] text-left transition-all hover:translate-x-1 ${
                   isSelected(optionIndex)
-                    ? "bg-red/25 border-[#c0392b] text-white"
-                    : "border-white/10 text-white/80"
-                }`}
+                    ? "bg-[#8b1a1a] border-[#8b1a1a] text-white"
+                    : "bg-white/5 border-white/10 text-white/80 hover:bg-white/9 hover:border-white/25"
+                } border`}
               >
-                <span className="text-sm md:text-[15px]">{opt}</span>
+                <span className="text-xl flex-shrink-0">{opt.emoji}</span>
+                <span
+                  className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0 transition-all ${
+                    isSelected(optionIndex)
+                      ? "bg-white/20 text-white"
+                      : "bg-white/8 text-white/50"
+                  }`}
+                >
+                  {opt.letter}
+                </span>
+                <span className="text-sm md:text-[15px]">{opt.text}</span>
               </button>
             );
           })}
@@ -403,18 +466,28 @@ export default function SurveyPage() {
           </div>
           <div className="flex flex-col gap-3 mb-10">
             {q.options.map((opt, i) => {
-              const optionIndex = i + 1; // 1-based index
+              const optionIndex = i + 1;
               return (
                 <button
                   key={i}
                   onClick={() => toggleMulti(optionIndex)}
-                  className={`flex items-center gap-4 bg-white/5 border rounded-xl p-[18px] text-left transition-all hover:bg-white/9 hover:border-white/25 hover:text-white ${
+                  className={`flex items-center gap-4 rounded-xl p-[18px] text-left transition-all hover:translate-x-1 ${
                     isSelected(optionIndex)
-                      ? "bg-red/25 border-[#c0392b] text-white"
-                      : "border-white/10 text-white/80"
-                  }`}
+                      ? "bg-[#8b1a1a] border-[#8b1a1a] text-white"
+                      : "bg-white/5 border-white/10 text-white/80 hover:bg-white/9 hover:border-white/25"
+                  } border`}
                 >
-                  <span className="text-sm md:text-[15px]">{opt}</span>
+                  <span className="text-xl flex-shrink-0">{opt.emoji}</span>
+                  <span
+                    className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0 transition-all ${
+                      isSelected(optionIndex)
+                        ? "bg-white/20 text-white"
+                        : "bg-white/8 text-white/50"
+                    }`}
+                  >
+                    {opt.letter}
+                  </span>
+                  <span className="text-sm md:text-[15px]">{opt.text}</span>
                 </button>
               );
             })}
@@ -426,7 +499,7 @@ export default function SurveyPage() {
     return null;
   };
 
-  // Organization Form Screen (after survey completion)
+  // Organization Form Screen
   if (showSurveyComplete) {
     return (
       <div className="min-h-screen bg-[#1a1009]">
@@ -468,7 +541,6 @@ export default function SurveyPage() {
           </div>
 
           <div className="space-y-6">
-            {/* Industry Question */}
             <div>
               <label className="text-white font-semibold mb-3 block">
                 What sector do you work in?
@@ -495,7 +567,6 @@ export default function SurveyPage() {
               </select>
             </div>
 
-            {/* Company Size */}
             <div>
               <label className="text-white font-semibold mb-3 block">
                 How many people work at your organisation?
@@ -518,7 +589,6 @@ export default function SurveyPage() {
               </select>
             </div>
 
-            {/* Role Level */}
             <div>
               <label className="text-white font-semibold mb-3 block">
                 What is your role level?
@@ -541,7 +611,6 @@ export default function SurveyPage() {
               </select>
             </div>
 
-            {/* Email - Part of organization details */}
             <div className="border-t border-white/8 pt-6 mt-6">
               <label className="text-white font-semibold mb-3 block">
                 Email (Optional)
@@ -567,7 +636,6 @@ export default function SurveyPage() {
               </button>
             </div>
 
-            {/* Submit Button */}
             <div className="flex gap-4 pt-6">
               <button
                 onClick={() => setShowSurveyComplete(false)}
@@ -581,7 +649,7 @@ export default function SurveyPage() {
                 disabled={isLoading}
                 className="flex-1 bg-[#8b1a1a] text-white px-6 py-3.5 rounded-lg text-[15px] font-semibold hover:bg-[#c0392b] transition-all"
               >
-                {isLoading ? "loading" : " Submit Survey → "}
+                {isLoading ? "loading" : "Submit Survey →"}
               </button>
             </div>
           </div>
@@ -652,7 +720,7 @@ export default function SurveyPage() {
             <button
               onClick={isLastQuestion ? completeSurvey : nextQuestion}
               disabled={!hasAnswer() || isLoading}
-              className={`bg-[#8b1a1a] text-white px-8 py-3.5 rounded-lg text-[15px] font-semibold flex items-center gap-2 transition-all hover:bg-[#c0392b] hover:-translate-y-px hover:shadow-[0_8px_20px_rgba(139,26,26,0.3)] disabled:opacity-30 disabled:cursor-not-allowed`}
+              className="bg-[#8b1a1a] text-white px-8 py-3.5 rounded-lg text-[15px] font-semibold flex items-center gap-2 transition-all hover:bg-[#c0392b] hover:-translate-y-px hover:shadow-[0_8px_20px_rgba(139,26,26,0.3)] disabled:opacity-30 disabled:cursor-not-allowed"
             >
               {isLastQuestion ? "Complete Survey →" : "Next →"}
             </button>

@@ -1,32 +1,71 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { useEffect, useState, useCallback, useRef } from "react";
+import toast from "react-hot-toast";
 
 export default function LandingPage() {
   const router = useRouter();
+  const [totalSurvey, setTotalSurvey] = useState(0);
+  const [isLoading, setIsloading] = useState<boolean>(false);
+  const [countdown, setCountdown] = useState<number>(60);
+
+  const target = 1000;
+  const progress = (totalSurvey / target) * 100;
+  const isComplete = totalSurvey >= target;
+
+  const fetchTotalSurvey = useCallback(async () => {
+    try {
+      const res = await fetch("/api/survey");
+      if (!res.ok) {
+        toast.error("sorry,something went wrong");
+        return;
+      }
+      const response = await res.json();
+      console.log(response);
+      setTotalSurvey(Number(response.data.count));
+    } catch (error) {
+      toast.error("something went wrong, please reload the page");
+    }
+  }, []);
+
+  useEffect(() => {
+    // Initial fetch
+    fetchTotalSurvey();
+
+    // Set up countdown timer
+    const countdownInterval = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          return 60;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    // Set up fetch interval (every 60 seconds)
+    const fetchInterval = setInterval(() => {
+      fetchTotalSurvey();
+      setCountdown(60);
+    }, 60000);
+
+    // Cleanup both intervals on unmount
+    return () => {
+      clearInterval(countdownInterval);
+      clearInterval(fetchInterval);
+    };
+  }, [fetchTotalSurvey]);
+
   return (
     <div className="flex flex-col min-h-screen bg-[#f5efe6]">
       {/* Navigation */}
       <nav className="flex items-center justify-between px-6 md:px-[60px] py-5 bg-[#f5efe6] border-b border-[#8b1a1a]/10 sticky top-0 z-50">
         <div className="flex items-center gap-2.5">
-          <div className="bg-[#8b1a1a] text-white font-bold text-xs w-9 h-9 flex items-center justify-center rounded">
-            SO
-          </div>
-          <span className="font-semibold text-base text-[#1a1009]">
-            StreetOps
-          </span>
+          <img src={"/red-logo.png"} className="h-10 w-30 object-contain" />
         </div>
         <div className="hidden md:flex items-center gap-7">
-          <a href="#" className="text-sm text-[#5c4a32]">
-            Street Ask
-          </a>
-          <a href="#" className="text-sm text-[#5c4a32]">
-            Research
-          </a>
-          <a href="#" className="text-sm text-[#5c4a32]">
-            About
-          </a>
           <a
-            href="#"
+            href="https://www.streetops.ng/"
+            target="_blank"
             className="bg-[#8b1a1a] text-white px-5.5 py-2.5 rounded text-sm font-semibold"
           >
             Work With Us
@@ -58,7 +97,7 @@ export default function LandingPage() {
         <div className="flex flex-wrap items-center gap-8">
           <div className="text-center">
             <div className="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-white">
-              312
+              {totalSurvey}
             </div>
             <div className="text-[11px] text-white/40 tracking-[1px] uppercase mt-0.5">
               Responses so far
@@ -67,7 +106,7 @@ export default function LandingPage() {
           <div className="w-px h-10 bg-white/15"></div>
           <div className="text-center">
             <div className="font-['Playfair_Display'] text-3xl md:text-4xl font-bold text-white">
-              1,000
+              {target.toLocaleString()}
             </div>
             <div className="text-[11px] text-white/40 tracking-[1px] uppercase mt-0.5">
               Target
@@ -85,7 +124,7 @@ export default function LandingPage() {
         </div>
         <div className="inline-flex items-center gap-2 bg-white/8 rounded-full px-4 py-1.5 text-xs text-white/60 mt-4">
           <span className="w-1.5 h-1.5 bg-[#2d6a4f] rounded-full animate-pulse"></span>
-          Live · Updates every 60 seconds
+          Live · Updates in {countdown} seconds
         </div>
       </div>
 
@@ -121,29 +160,50 @@ export default function LandingPage() {
               Responses Collected
             </div>
             <div className="bg-[#ede4d7] rounded-full h-2 overflow-hidden mb-2.5">
-              <div className="bg-gradient-to-r from-[#8b1a1a] to-[#c0392b] h-full rounded-full w-[31.2%]"></div>
+              <div
+                className="bg-gradient-to-r from-[#8b1a1a] to-[#c0392b] h-full rounded-full transition-all duration-500"
+                style={{ width: `${Math.min(progress, 100)}%` }}
+              ></div>
             </div>
             <div className="text-xs md:text-[13px] text-[#8a7a68]">
-              <strong className="text-[#1a1009]">312 responses so far</strong> ·
-              Target: 1,000 · Under 5 minutes to complete
+              <strong className="text-[#1a1009]">
+                {totalSurvey} responses so far
+              </strong>{" "}
+              · Target: {target.toLocaleString()} · Under 5 minutes to complete
             </div>
           </div>
 
           <button
+            disabled={isLoading || isComplete}
             onClick={() => router.push("/survey")}
-            className="inline-flex items-center gap-2.5 bg-[#8b1a1a] text-white px-9 py-4 rounded-lg text-base font-semibold hover:bg-[#c0392b] transition-all"
+            className={`inline-flex items-center gap-2.5 px-9 py-4 rounded-lg text-base font-semibold transition-all ${
+              isLoading || isComplete
+                ? "bg-gray-400 cursor-not-allowed text-white/70"
+                : "bg-[#8b1a1a] text-white hover:bg-[#c0392b]"
+            }`}
           >
-            Take the Survey
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path
-                d="M3 8H13M13 8L9 4M13 8L9 12"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            {isComplete
+              ? "Survey Complete"
+              : isLoading
+                ? "Loading..."
+                : "Take the Survey"}
+            {!isComplete && !isLoading && (
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M3 8H13M13 8L9 4M13 8L9 12"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            )}
           </button>
+          {isComplete && (
+            <p className="text-sm text-green-600 mt-3 text-center">
+              🎉 Target reached! Thank you for your participation.
+            </p>
+          )}
         </div>
       </div>
 
@@ -162,7 +222,6 @@ export default function LandingPage() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-9">
           <div className="bg-white rounded-xl p-7 md:p-8">
-            <div className="text-3xl mb-4">🔒</div>
             <div className="font-semibold text-[#1a1009] mb-2">
               100% Anonymous
             </div>
@@ -172,7 +231,6 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="bg-white rounded-xl p-7 md:p-8 border-2 border-[#8b1a1a]">
-            <div className="text-3xl mb-4">📊</div>
             <div className="font-semibold text-[#1a1009] mb-2">
               Shapes Real Research
             </div>
@@ -182,7 +240,6 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="bg-white rounded-xl p-7 md:p-8">
-            <div className="text-3xl mb-4">📬</div>
             <div className="font-semibold text-[#1a1009] mb-2">
               You Get the Report
             </div>
