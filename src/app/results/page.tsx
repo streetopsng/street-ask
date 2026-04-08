@@ -360,8 +360,8 @@ export default function ResultsPage() {
       {/* Footer */}
       <div className="bg-[#ede4d7] px-5 md:px-[60px] py-10 md:py-15 text-center">
         <p className="text-sm text-[#5c4a32] mb-3">
-          The Street Pulse report for Issue 01 drops on the first Tuesday of
-          April 2026. If you dropped your email, you will get it first.
+          The Street Pulse report for Issue 01 drops April 2026. If you dropped
+          your email, you will get it first.
         </p>
         <button
           onClick={() => router.push("/")}
