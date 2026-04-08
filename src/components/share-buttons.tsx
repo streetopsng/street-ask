@@ -1,4 +1,3 @@
-// components/ShareButtons.tsx
 "use client";
 
 export default function ShareButtons() {
@@ -11,7 +10,7 @@ export default function ShareButtons() {
   return (
     <div className="flex flex-wrap gap-2.5 justify-center mt-7">
       <a
-        href={`https://wa.me/?text=${encodeURIComponent("I just took the StreetOps survey on office romance! 👀 Take yours too: " + baseUrl)}`}
+        href={`https://wa.me/?text=${encodeURIComponent("I just took the StreetOps survey on office romance! 👀 Take yours too: " + window.location.origin)}`}
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold bg-[#25d366] text-white"
@@ -20,7 +19,7 @@ export default function ShareButtons() {
       </a>
 
       <a
-        href={`https://twitter.com/intent/tweet?text=${encodeURIComponent("I just took the StreetOps survey on office romance! 👀 Take yours too: " + baseUrl)}`}
+        href={`https://twitter.com/intent/tweet?text=${encodeURIComponent("I just took the StreetOps survey on office romance! 👀 Take yours too: " + window.location.origin)}`}
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold bg-[#1da1f2] text-white"
@@ -29,7 +28,7 @@ export default function ShareButtons() {
       </a>
 
       <a
-        href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(baseUrl)}`}
+        href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.origin)}`}
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold bg-[#0a66c2] text-white"
@@ -39,7 +38,7 @@ export default function ShareButtons() {
 
       <button
         onClick={() => {
-          navigator.clipboard.writeText(baseUrl);
+          navigator.clipboard.writeText(window.location.origin);
           alert("Link copied!");
         }}
         className="flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold bg-[#8b1a1a] text-white"
