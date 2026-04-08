@@ -266,13 +266,13 @@ export default function ResultsPage() {
                     survey submission.
                   </p>
                 </div>
-                <div className="flex gap-3">
+                <div className="flex lg:flex-row flex-col gap-3">
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="your@email.com"
-                    className="flex-1 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-[#c0392b]"
+                    className="flex-1 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-[#c0392b] "
                   />
                   <button
                     onClick={handleEmailSubmit}
