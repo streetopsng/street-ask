@@ -22,13 +22,12 @@ export const metadata: Metadata = {
     apple: "/icon.png",
   },
   openGraph: {
-    title: "StreetOps Survey",
-    description: `StreetAsk by StreetOps | State of SME Productivity Survey
-Romance & Relationships at Work - The Office Palava`,
+    title: "StreetAsk by StreetOps",
+    description: `Survey on Romance & Relationships at Work`,
     url: "https://ask.streetops.ng/",
     images: [
       {
-        url: "https://res.cloudinary.com/deylyllwd/image/upload/v1775629314/WhatsApp_Image_2026-04-07_at_7.19.58_PM_gw6yjg.jpg",
+        url: "https://res.cloudinary.com/deylyllwd/image/upload/v1775633140/streetops-ask_ot7ga8.png",
       },
     ],
     type: "website",

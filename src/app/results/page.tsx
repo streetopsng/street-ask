@@ -21,6 +21,13 @@ export default function ResultsPage() {
   const [totalResponses, setTotalResponses] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
+  // Email state
+  const [email, setEmail] = useState("");
+  const [emailStatus, setEmailStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+  const [showEmailForm, setShowEmailForm] = useState(true);
+
   // Fetch total response count from API
   const fetchTotalResponses = async () => {
     try {
@@ -36,6 +43,41 @@ export default function ResultsPage() {
       toast.error("something went wrong, please reload the page");
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleEmailSubmit = async () => {
+    if (!email || !email.includes("@")) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
+    setEmailStatus("loading");
+    try {
+      const res = await fetch("/api/survey/emails", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setEmailStatus("success");
+        setShowEmailForm(false);
+        if (data.alreadyExists) {
+          toast.success("Email already subscribed!");
+        } else {
+          toast.success("Thanks for subscribing!");
+        }
+      } else {
+        toast.error(data.error || "Something went wrong");
+        setEmailStatus("error");
+      }
+    } catch (error) {
+      console.error("Email submission error:", error);
+      toast.error("Failed to subscribe. Please try again.");
+      setEmailStatus("error");
     }
   };
 
@@ -208,13 +250,62 @@ export default function ResultsPage() {
             </div>
           </div>
 
+          {/* Email Subscription Section - Added before Share Card */}
+          {showEmailForm ? (
+            <div className="max-w-[480px] mx-auto mb-8 mt-4">
+              <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm border border-white/20">
+                {/* <h3 className="text-white font-semibold text-lg mb-2">
+                  Get the Report
+                </h3> */}
+                <div className="text-white/60 text-sm mb-4">
+                  Be the first to access this survey's insights and receive
+                  curated updates on our products, industry trends, and
+                  exclusive reports. Enter your email below to subscribe.
+                  <p className="text-green-500">
+                    Your response remains anonymous,this is not linked to your
+                    survey submission.
+                  </p>
+                </div>
+                <div className="flex gap-3">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="your@email.com"
+                    className="flex-1 bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white text-sm placeholder:text-white/40 focus:outline-none focus:border-[#c0392b]"
+                  />
+                  <button
+                    onClick={handleEmailSubmit}
+                    disabled={emailStatus === "loading"}
+                    className="bg-[#8b1a1a] text-white px-6 py-3 rounded-lg text-sm font-semibold hover:bg-[#c0392b] transition-all disabled:opacity-50 disabled:cursor-not-allowed min-w-[100px]"
+                  >
+                    {emailStatus === "loading" ? "Subscribing..." : "Subscribe"}
+                  </button>
+                </div>
+                <button
+                  onClick={() => setShowEmailForm(false)}
+                  className="text-xs text-white/40 hover:text-white/60 mt-3 text-center w-full transition-all"
+                >
+                  No thanks, skip for now
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="max-w-[480px] mx-auto mb-8 mt-4">
+              <div className="bg-white/10 rounded-xl p-4">
+                <p className="text-white/60 text-sm text-center">
+                  {emailStatus === "success"
+                    ? "✓ Subscribed successfully!"
+                    : "Thanks for participating!"}
+                </p>
+              </div>
+            </div>
+          )}
+
           {/* Share Buttons */}
           <ShareButtons />
         </div>
       </div>
-
-      {/* Your Responses Section - Hidden since you removed it from the design */}
-      {/* Keeping it commented in case you want to add it back later */}
 
       {/* Community Strip */}
       <div className="bg-[#1a1009] px-5 md:px-[60px] py-10 md:py-15 text-center">

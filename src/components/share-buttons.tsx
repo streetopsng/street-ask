@@ -2,6 +2,10 @@
 
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { FaWhatsapp } from "react-icons/fa";
+import { MdContentCopy } from "react-icons/md";
+import { LuLinkedin } from "react-icons/lu";
+import { CiTwitter } from "react-icons/ci";
 
 export default function ShareButtons() {
   const [url, setUrl] = useState("");
@@ -22,7 +26,10 @@ export default function ShareButtons() {
         rel="noopener noreferrer"
         className="flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold bg-[#25d366] text-white"
       >
-        <span>📱</span> WhatsApp
+        <span>
+          <FaWhatsapp />
+        </span>{" "}
+        WhatsApp
       </a>
 
       <a
@@ -31,7 +38,10 @@ export default function ShareButtons() {
         rel="noopener noreferrer"
         className="flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold bg-[#1da1f2] text-white"
       >
-        <span>🐦</span> Twitter
+        <span>
+          <CiTwitter />
+        </span>{" "}
+        Twitter
       </a>
 
       <a
@@ -40,7 +50,10 @@ export default function ShareButtons() {
         rel="noopener noreferrer"
         className="flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold bg-[#0a66c2] text-white"
       >
-        <span>💼</span> LinkedIn
+        <span>
+          <LuLinkedin />
+        </span>{" "}
+        LinkedIn
       </a>
 
       <button
@@ -50,7 +63,10 @@ export default function ShareButtons() {
         }}
         className="flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold bg-[#8b1a1a] text-white"
       >
-        <span>🔗</span> Copy Link
+        <span>
+          <MdContentCopy />
+        </span>{" "}
+        Copy Link
       </button>
     </div>
   );

@@ -319,11 +319,11 @@ export default function SurveyPage() {
   const [showSurveyComplete, setShowSurveyComplete] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  // Organization form state - removed email
   const [orgForm, setOrgForm] = useState({
     industry: "",
     companySize: "",
     roleLevel: "",
-    email: "",
   });
 
   const total = questions.length;
@@ -389,7 +389,7 @@ export default function SurveyPage() {
         companySize: orgForm.companySize,
         roleLevel: orgForm.roleLevel,
       },
-      email: orgForm.email || undefined,
+      email: "anonymous@streetask.ng", // Dummy email to satisfy backend
     };
 
     localStorage.setItem("surveyAnswers", JSON.stringify(finalAnswers));
@@ -440,7 +440,6 @@ export default function SurveyPage() {
                     : "bg-white/5 border-white/10 text-white/80 hover:bg-white/9 hover:border-white/25"
                 } border`}
               >
-                {/* <span className="text-xl flex-shrink-0">{opt.emoji}</span> */}
                 <span
                   className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0 transition-all ${
                     isSelected(optionIndex)
@@ -477,7 +476,6 @@ export default function SurveyPage() {
                       : "bg-white/5 border-white/10 text-white/80 hover:bg-white/9 hover:border-white/25"
                   } border`}
                 >
-                  <span className="text-xl flex-shrink-0">{opt.emoji}</span>
                   <span
                     className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0 transition-all ${
                       isSelected(optionIndex)
@@ -499,7 +497,7 @@ export default function SurveyPage() {
     return null;
   };
 
-  // Organization Form Screen
+  // Organization Form Screen - Email removed
   if (showSurveyComplete) {
     return (
       <div className="min-h-screen bg-[#1a1009]">
@@ -611,30 +609,7 @@ export default function SurveyPage() {
               </select>
             </div>
 
-            <div className="border-t border-white/8 pt-6 mt-6">
-              <label className="text-white font-semibold mb-3 block">
-                Email (Optional)
-              </label>
-              <p className="text-white/40 text-sm mb-3">
-                Drop your email to get early access to the Street Pulse report
-                when it drops. No spam. Just the findings.
-              </p>
-              <input
-                type="email"
-                value={orgForm.email}
-                onChange={(e) =>
-                  setOrgForm({ ...orgForm, email: e.target.value })
-                }
-                placeholder="your@email.com"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-[#c0392b]"
-              />
-              <button
-                onClick={() => setOrgForm({ ...orgForm, email: "" })}
-                className="text-xs text-white/30 underline bg-none border-none mt-2.5 cursor-pointer hover:text-white/50"
-              >
-                Skip for now
-              </button>
-            </div>
+            {/* Email section completely removed */}
 
             <div className="flex gap-4 pt-6">
               <button
