@@ -2,7 +2,7 @@ import pool from "@/db/connect-db";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
-  const client = await pool.connect();
+  // const client = await pool.connect();
 
   try {
     const body = await request.json();
@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     }
 
     // Check if email already exists
-    const checkResult = await client.query(
+    const checkResult = await pool.query(
       `SELECT id FROM user_emails WHERE email = $1`,
       [email],
     );
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     }
 
     // Insert new email
-    await client.query(`INSERT INTO user_emails (email) VALUES ($1)`, [email]);
+    await pool.query(`INSERT INTO user_emails (email) VALUES ($1)`, [email]);
 
     return NextResponse.json({
       success: true,
@@ -44,6 +44,6 @@ export async function POST(request: Request) {
       { status: 500 },
     );
   } finally {
-    client.release();
+    // client.release();
   }
 }

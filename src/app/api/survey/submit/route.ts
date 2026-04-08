@@ -6,14 +6,13 @@ export const POST = async (req: NextRequest) => {
 
   const { surveyAnswers, email, organizationInfo } = await req.json();
 
-  const client = await pool.connect();
+  // const client = await pool.connect();
   const sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
   try {
-    await client.query("BEGIN");
     //   now add users details
 
-    await client.query(
+    await pool.query(
       `
     INSERT INTO users(session_id,industry,company_size,role_level,email)
     VALUES ($1,$2,$3,$4,$5)
@@ -45,7 +44,7 @@ export const POST = async (req: NextRequest) => {
         jsonValue = JSON.stringify({ value: answerValue });
       }
 
-      await client.query(
+      await pool.query(
         `
     INSERT INTO answers (session_id,question_id,answer_value)
     VALUES ($1,$2,$3::jsonb)
@@ -54,14 +53,14 @@ export const POST = async (req: NextRequest) => {
       );
     }
 
-    await client.query("COMMIT");
+    // await client.query("COMMIT");
 
     return NextResponse.json(
       { success: true, message: "successfully added" },
       { status: 201 },
     );
   } catch (error) {
-    client.query("ROLLBACK");
+    // client.query("ROLLBACK");
     console.log(error);
 
     return NextResponse.json(
@@ -69,6 +68,6 @@ export const POST = async (req: NextRequest) => {
       { status: 500 },
     );
   } finally {
-    client.release();
+    // client.release();
   }
 };
