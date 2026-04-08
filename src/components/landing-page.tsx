@@ -71,7 +71,7 @@ export default function LandingPage() {
             target="_blank"
             className="bg-[#8b1a1a] text-white px-5.5 py-2.5 rounded text-sm font-semibold"
           >
-            Work With Us
+            Visit StreetOps
           </a>
         </div>
       </nav>
