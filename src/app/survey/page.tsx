@@ -650,11 +650,7 @@ export default function SurveyPage() {
             <img src={"/red-logo.png"} className="h-10 w-30 object-contain" />
           </Link>
         </div>
-        <div className="text-[13px] text-white/40">
-          Question{" "}
-          <span className="text-white/80 font-semibold">{currentQ + 1}</span> of{" "}
-          <span className="text-white/80 font-semibold">{total}</span>
-        </div>
+
         <button
           onClick={() => router.push("/")}
           className="bg-white/8 border-none text-white/50 px-4 py-2 rounded-md text-[13px] cursor-pointer hover:bg-white/12 hover:text-white transition-all"
@@ -672,9 +668,9 @@ export default function SurveyPage() {
 
       <div className="max-w-[680px] mx-auto px-5 md:px-10 py-15 md:py-[60px] min-h-[calc(100vh-120px)] flex flex-col justify-center">
         <div className="animate-[slideIn_0.35s_ease_forwards]">
-          <div className="text-[11px] font-semibold tracking-[3px] uppercase text-[#c0392b] mb-4">
+          {/* <div className="text-[11px] font-semibold tracking-[3px] uppercase text-[#c0392b] mb-4">
             Question {currentQ + 1} of {total}
-          </div>
+          </div> */}
           <div className="font-['Playfair_Display'] text-2xl md:text-4xl font-bold text-white leading-tight mb-3">
             {q.question}
           </div>

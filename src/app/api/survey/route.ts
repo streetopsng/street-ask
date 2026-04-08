@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 import pool from "@/db/connect-db";
+import { Pool } from "pg";
 
 export const GET = async () => {
   console.log(process.env.DATABASE_URL, "url for db");
@@ -27,6 +28,7 @@ export const GET = async () => {
     //   id SERIAL PRIMARY KEY,
     //   email TEXT NOT NULL
     // )`);
+    // await pool.query(`TRUNCATE TABLE answers, users RESTART IDENTITY CASCADE`);
 
     const response = await pool.query(`
             SELECT COUNT(DISTINCT session_id) FROM answers
