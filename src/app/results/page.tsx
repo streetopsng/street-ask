@@ -204,7 +204,7 @@ export default function ResultsPage() {
               relationships. Anonymous. No judgment. Take yours too.
             </div>
             <div className="text-xs font-semibold text-[#8b1a1a] tracking-[1px] uppercase">
-              streetask.ng/romance
+              ask.streetops.ng
             </div>
           </div>
 
