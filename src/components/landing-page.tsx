@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, useCallback, useRef } from "react";
 import toast from "react-hot-toast";
@@ -60,7 +61,9 @@ export default function LandingPage() {
       {/* Navigation */}
       <nav className="flex items-center justify-between px-6 md:px-[60px] py-5 bg-[#f5efe6] border-b border-[#8b1a1a]/10 sticky top-0 z-50">
         <div className="flex items-center gap-2.5">
-          <img src={"/red-logo.png"} className="h-10 w-30 object-contain" />
+          <Link href={"/"}>
+            <img src={"/red-logo.png"} className="h-10 w-30 object-contain" />
+          </Link>
         </div>
         <div className="hidden md:flex items-center gap-7">
           <a

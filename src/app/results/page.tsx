@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import ShareButtons from "@/components/share-buttons";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 interface SurveyAnswers {
   [questionId: number]: any;
@@ -349,12 +350,12 @@ export default function ResultsPage() {
         <p className="text-sm text-white/40 mb-6">
           The report drops in April. We will tell you what everyone said.
         </p>
-        <button
-          onClick={() => router.push("/")}
+        <Link
+          href={"https://streetops.ng/"}
           className="bg-transparent border border-white/20 text-white/70 px-7 py-3 rounded-lg text-sm cursor-pointer hover:border-white/50 hover:text-white transition-all"
         >
-          Back to Street Ask
-        </button>
+          Visit StreetOps
+        </Link>
       </div>
 
       {/* Footer */}

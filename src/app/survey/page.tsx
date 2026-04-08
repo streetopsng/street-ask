@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 interface SurveyAnswers {
   [questionId: number]: any;
@@ -644,11 +645,10 @@ export default function SurveyPage() {
       </div>
 
       <nav className="px-5 md:px-10 py-5 flex items-center justify-between border-b border-white/8 bg-[#1a1009] relative z-10">
-        <div className="flex items-center gap-2.5 text-white font-semibold text-sm md:text-[15px]">
-          <div className="bg-[#8b1a1a] text-white font-bold text-xs w-8 h-8 flex items-center justify-center rounded">
-            SO
-          </div>
-          Street Ask
+        <div className="flex items-center gap-2.5">
+          <Link href={"/"}>
+            <img src={"/red-logo.png"} className="h-10 w-30 object-contain" />
+          </Link>
         </div>
         <div className="text-[13px] text-white/40">
           Question{" "}
