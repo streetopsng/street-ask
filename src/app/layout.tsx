@@ -25,6 +25,19 @@ export const metadata: Metadata = {
     icon: [{ url: "/favicon.ico" }, { url: "/icon.png", type: "image/png" }],
     apple: "/icon.png",
   },
+  openGraph: {
+    title: "StreetOps Survey",
+    description: `StreetAsk by StreetOps | State of SME Productivity Survey
+Romance & Relationships at Work - The Office Palava`,
+    url: "https://street-ask.vercel.app",
+    images: [
+      {
+        url: "https://res.cloudinary.com/deylyllwd/image/upload/v1775629314/WhatsApp_Image_2026-04-07_at_7.19.58_PM_gw6yjg.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
