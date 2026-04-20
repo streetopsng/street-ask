@@ -17,6 +17,8 @@ export default function LandingPage() {
   const fetchTotalSurvey = useCallback(async () => {
     try {
       const res = await fetch("/api/survey");
+      console.log(res);
+
       if (!res.ok) {
         toast.error("sorry,something went wrong");
         return;
@@ -125,10 +127,10 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-        <div className="inline-flex items-center gap-2 bg-white/8 rounded-full px-4 py-1.5 text-xs text-white/60 mt-4">
+        {/* <div className="inline-flex items-center gap-2 bg-white/8 rounded-full px-4 py-1.5 text-xs text-white/60 mt-4">
           <span className="w-1.5 h-1.5 bg-[#2d6a4f] rounded-full animate-pulse"></span>
           Live · Updates in {countdown} seconds
-        </div>
+        </div> */}
       </div>
 
       {/* Active Survey Card */}
