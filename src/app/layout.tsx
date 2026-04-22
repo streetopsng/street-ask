@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "StreetOps",
-  description: "Street Ask",
+  title: "StreetAsk - Research Programme Initiative",
+  description: "StreetAsk - Research Programme Initiative",
   icons: {
     icon: [{ url: "/favicon.ico" }, { url: "/icon.png", type: "image/png" }],
     apple: "/icon.png",
