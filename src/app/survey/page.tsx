@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import Link from "next/link";
@@ -414,6 +414,10 @@ export default function SurveyPage() {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    router.push("/");
+  }, []);
 
   const isSelected = (optIndex: number): boolean => {
     if (q.type === "single answer") {
