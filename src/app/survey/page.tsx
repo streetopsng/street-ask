@@ -394,7 +394,7 @@ export default function SurveyPage() {
     };
 
     localStorage.setItem("surveyAnswers", JSON.stringify(finalAnswers));
-    console.log("Submitted:", finalAnswers);
+    // console.log("Submitted:", finalAnswers);
 
     setIsLoading(true);
     try {
