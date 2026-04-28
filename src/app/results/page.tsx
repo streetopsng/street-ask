@@ -38,7 +38,8 @@ export default function ResultsPage() {
         return;
       }
       const response = await res.json();
-      setTotalResponses(Number(response.data.count));
+      // setTotalResponses(Number(response.data.count));
+      setTotalResponses(1000);
     } catch (error) {
       console.error("Failed to fetch total responses:", error);
       toast.error("something went wrong, please reload the page");

@@ -25,7 +25,8 @@ export default function LandingPage() {
       }
       const response = await res.json();
       console.log(response);
-      setTotalSurvey(Number(response.data.count));
+      // setTotalSurvey(Number(response.data.count));
+      setTotalSurvey(1000);
     } catch (error) {
       toast.error("something went wrong, please reload the page");
     }
