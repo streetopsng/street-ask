@@ -17,14 +17,14 @@ export default function LandingPage() {
   const fetchTotalSurvey = useCallback(async () => {
     try {
       const res = await fetch("/api/survey");
-      console.log(res);
+      // console.log(res);
 
       if (!res.ok) {
         toast.error("sorry,something went wrong");
         return;
       }
       const response = await res.json();
-      console.log(response);
+      // console.log(response);
       // setTotalSurvey(Number(response.data.count));
       setTotalSurvey(1000);
     } catch (error) {
