@@ -179,32 +179,42 @@ export default function LandingPage() {
             </div>
           </div>
 
-          <button
-            disabled={isLoading || isComplete}
-            onClick={() => router.push("/survey")}
-            className={`inline-flex items-center gap-2.5 px-9 py-4 rounded-lg text-base font-semibold transition-all ${
-              isLoading || isComplete
-                ? "bg-gray-400 cursor-not-allowed text-white/70"
-                : "bg-[#8b1a1a] text-white hover:bg-[#c0392b]"
-            }`}
-          >
-            {isComplete
-              ? "Survey Complete"
-              : isLoading
-                ? "Loading..."
-                : "Take the Survey"}
-            {!isComplete && !isLoading && (
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M3 8H13M13 8L9 4M13 8L9 12"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            )}
-          </button>
+          <div className="flex lg:flex-row flex-col gap-4">
+            <button
+              disabled={isLoading || isComplete}
+              onClick={() => router.push("/survey")}
+              className={`inline-flex items-center gap-2.5 px-9 py-4 rounded-lg text-base font-semibold transition-all ${
+                isLoading || isComplete
+                  ? "bg-gray-400 cursor-not-allowed text-white/70"
+                  : "bg-[#8b1a1a] text-white hover:bg-[#c0392b]"
+              }`}
+            >
+              {isComplete
+                ? "Survey Complete"
+                : isLoading
+                  ? "Loading..."
+                  : "Take the Survey"}
+              {!isComplete && !isLoading && (
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path
+                    d="M3 8H13M13 8L9 4M13 8L9 12"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              )}
+            </button>
+
+            <a
+              href="https://www.streetops.ng/reports"
+              target="_blank"
+              className="inline-flex items-center gap-2.5 px-9 py-4 rounded-lg text-base font-semibold transition-all bg-[#8b1a1a] text-white hover:bg-[#c0392b]"
+            >
+              Access Survey Report
+            </a>
+          </div>
           {isComplete && (
             <p className="text-sm text-green-600 mt-3 text-center">
               🎉 Target reached! Thank you for your participation.
