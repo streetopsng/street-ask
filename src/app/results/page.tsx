@@ -261,22 +261,22 @@ export default function ResultsPage() {
                   Street Ask
                 </div>
                 <div className="text-[11px] text-[#8a7a68]">
-                  Issue 01 · April 2026
+                  Issue 02 · May 2026
                 </div>
               </div>
             </div>
-
-            <div className="bg-gradient-to-br from-[#fff0e6] to-[#ffe4d4] rounded-2xl p-7 text-center mb-5 relative">
-              <div className="flex items-end justify-center gap-1 text-5xl mb-3">
-                <span className="text-5xl">👩🏾‍💼</span>
-                <span className="text-4xl mb-1">💌</span>
-                <span className="text-5xl">👨🏾‍💼</span>
+            {/* bg-gradient-to-br from-[#fff0e6] to-[#ffe4d4] */}
+            <div className="bg-green-200 rounded-2xl p-7 text-center mb-5 relative my-2">
+              <div className="my-4">
+                <img
+                  src="https://res.cloudinary.com/deylyllwd/image/upload/v1777984203/Gemini_Generated_Image_8afcp8afcp8afcp8_pzudpw.png"
+                  alt="image"
+                />
               </div>
               <div className="bg-white rounded-xl px-4 py-2.5 text-[13px] font-semibold text-[#1a1009] inline-block shadow-[0_2px_8px_rgba(0,0,0,0.08)] relative after:content-[''] after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:border-8 after:border-transparent after:border-t-white after:border-b-0">
                 Pay fairness? I have THOUGHTS. 👀
               </div>
             </div>
-
             <div className="font-['Playfair_Display'] text-lg font-bold text-[#1a1009] leading-tight mb-2">
               I just took the StreetOps survey on pay and compensation.
             </div>
