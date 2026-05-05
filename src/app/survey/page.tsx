@@ -875,10 +875,10 @@ export default function SurveyPage() {
               <div className="text-[11px] font-semibold tracking-[3px] uppercase text-[#c0392b] mb-2">
                 STREET INTERVIEW — 8 QUESTIONS
               </div>
-              <p className="text-white/60 text-sm">
-                Ask 4–5, in any order, conversationally. The last one is a great
+              {/* <p className="text-white/60 text-sm">
+                Answer in any order, conversationally. The last one is a great
                 closer.
-              </p>
+              </p> */}
               <div className="w-16 h-px bg-[#c0392b] mx-auto mt-4"></div>
             </div>
           )}
