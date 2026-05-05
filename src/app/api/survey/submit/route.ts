@@ -5,6 +5,7 @@ export const POST = async (req: NextRequest) => {
   // creatin connection for the pool
 
   const { surveyAnswers, email, organizationInfo } = await req.json();
+  console.log(surveyAnswers);
 
   // const client = await pool.connect();
   const sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
@@ -14,7 +15,7 @@ export const POST = async (req: NextRequest) => {
 
     await pool.query(
       `
-    INSERT INTO users(session_id,industry,company_size,role_level,email)
+    INSERT INTO pay_check_users(session_id,industry,company_size,role_level,email)
     VALUES ($1,$2,$3,$4,$5)
     `,
       [
@@ -46,10 +47,10 @@ export const POST = async (req: NextRequest) => {
 
       await pool.query(
         `
-    INSERT INTO answers (session_id,question_id,answer_value)
-    VALUES ($1,$2,$3::jsonb)
+    INSERT INTO "pay_check-answers" (session_id,question_id,answer_value,answer_type)
+    VALUES ($1,$2,$3::jsonb,$4)
     `,
-        [sessionId, parseInt(questionId), jsonValue],
+        [sessionId, parseInt(questionId), jsonValue, "single_answer"],
       );
     }
 
@@ -61,7 +62,7 @@ export const POST = async (req: NextRequest) => {
     );
   } catch (error) {
     // client.query("ROLLBACK");
-    console.log(error);
+    // console.log(error);
 
     return NextResponse.json(
       { success: false, message: "an error occured" },

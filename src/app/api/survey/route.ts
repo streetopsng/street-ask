@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 
 import pool from "@/db/connect-db";
-import { Pool } from "pg";
+// import { Pool } from "pg";
 
 export const GET = async () => {
-  console.log(process.env.DATABASE_URL, "url for db");
+  // console.log(process.env.DATABASE_URL, "url for db");
   try {
-    // await client.query(`CREATE TABLE IF NOT EXISTS answers (
+    // await pool.query(`CREATE TABLE IF NOT EXISTS "pay_check-answers" (
     // id SERIAL PRIMARY KEY,
     // session_id VARCHAR(255) NOT NULL,
     // question_id INTEGER NOT NULL,
@@ -14,8 +14,10 @@ export const GET = async () => {
     //   answer_type VARCHAR(50) NOT NULL,
     //   create_at TIMESTAMP DEFAULT NOW() NOT NULL
     // )`);
+    // console.log("success");
+    // return NextResponse.json({ success: true });
 
-    //     await client.query(`CREATE TABLE IF NOT EXISTS users (
+    // await pool.query(`CREATE TABLE IF NOT EXISTS pay_check_users (
     //   id SERIAL PRIMARY KEY,
     //   email TEXT NOT NULL,
     //   session_id VARCHAR(255) NOT NULL,
@@ -24,14 +26,16 @@ export const GET = async () => {
     //     role_level VARCHAR(100),
     //   created_at TIMESTAMP DEFAULT NOW() NOT NULL
     // )`);
-    //         await client.query(`CREATE TABLE IF NOT EXISTS user_emails (
+
+    //   await pool.query(`CREATE TABLE IF NOT EXISTS pay_check_user_emails (
     //   id SERIAL PRIMARY KEY,
     //   email TEXT NOT NULL
     // )`);
-    // await pool.query(`TRUNCATE TABLE answers, users RESTART IDENTITY CASCADE`);
+    //   return NextResponse.json({ success: true });
+    // await pool.query(`TRUNCATE TABLE "pay_check-answers", pay_check_users RESTART IDENTITY CASCADE`);
 
     const response = await pool.query(`
-            SELECT COUNT(DISTINCT session_id) FROM answers
+            SELECT COUNT(DISTINCT session_id) FROM "pay_check-answers"
             `);
     console.log(response.rows.length, "total lenght");
 
@@ -58,7 +62,7 @@ export const GET = async () => {
 
 //   try {
 //     const res = await client.query("SELECT NOW()");
-//     await client.query(`CREATE TABLE IF NOT EXISTS answers (
+//     await client.query(`CREATE TABLE IF NOT EXISTS "pay_check-answers" (
 //     id SERIAL PRIMARY KEY,
 //     session_id VARCHAR(255) NOT NULL,
 //     question_id INTEGER NOT NULL,

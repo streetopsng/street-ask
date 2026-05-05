@@ -25,8 +25,8 @@ export default function LandingPage() {
       }
       const response = await res.json();
       // console.log(response);
-      // setTotalSurvey(Number(response.data.count));
-      setTotalSurvey(1000);
+      setTotalSurvey(Number(response.data.count));
+      // setTotalSurvey(1000);
     } catch (error) {
       toast.error("something went wrong, please reload the page");
     }
@@ -151,15 +151,17 @@ export default function LandingPage() {
 
         <div className="bg-white border border-[#8b1a1a]/20 rounded-2xl p-7 md:p-12 max-w-[720px] shadow-[0_4px_40px_rgba(139,26,26,0.06)]">
           <div className="font-['Playfair_Display'] text-2xl md:text-3xl font-bold text-[#1a1009] mb-3 leading-tight">
-            Romance &amp; Relationships at Work —{" "}
-            <span className="text-[#8b1a1a] italic">The Office Palava</span>
+            The Pay Check Edition —{" "}
+            <span className="text-[#8b1a1a] italic">
+              Are Nigerians actually paid well?
+            </span>
           </div>
-          <p className="text-sm md:text-[15px] text-[#5c4a32] leading-relaxed mb-8">
+          {/* <p className="text-sm md:text-[15px] text-[#5c4a32] leading-relaxed mb-8">
             We want to understand how Nigerian workers really feel about
             workplace romance, relationships, and all the palava that comes with
             them. Anonymous. Honest. No judgment. Your responses directly shape
             our April Street Pulse.
-          </p>
+          </p> */}
 
           <div className="mb-8">
             <div className="text-[11px] font-semibold tracking-[2px] uppercase text-[#8a7a68] mb-2.5">
@@ -207,13 +209,13 @@ export default function LandingPage() {
               )}
             </button>
 
-            <a
+            {/* <a
               href="https://www.streetops.ng/reports"
               target="_blank"
               className="inline-flex items-center gap-2.5 px-9 py-4 rounded-lg text-base font-semibold transition-all bg-[#8b1a1a] text-white hover:bg-[#c0392b]"
             >
               Access Survey Report
-            </a>
+            </a> */}
           </div>
           {isComplete && (
             <p className="text-sm text-green-600 mt-3 text-center">

@@ -38,8 +38,7 @@ export default function ResultsPage() {
         return;
       }
       const response = await res.json();
-      // setTotalResponses(Number(response.data.count));
-      setTotalResponses(1000);
+      setTotalResponses(Number(response.data?.count) || 0);
     } catch (error) {
       console.error("Failed to fetch total responses:", error);
       toast.error("something went wrong, please reload the page");
@@ -92,65 +91,99 @@ export default function ResultsPage() {
     fetchTotalResponses();
   }, []);
 
-  const questions = [
+  const questions: { id: number; text: string; options?: string[] }[] = [
     {
       id: 1,
-      text: "Has a workplace relationship ever affected your performance at work?",
-      options: [
-        "Yes, positively — I worked better.",
-        "Yes, negatively — it was a distraction.",
-        "Both at different times.",
-        "No, never been in that situation.",
-      ],
+      text: "When your salary alert drops, what is your honest first thought?",
     },
     {
       id: 2,
-      text: "What is your honest position on office romance?",
-      options: [
-        "It happens, it is fine, people are adults.",
-        "It is risky but I understand why people do it.",
-        "It should not happen — too many complications.",
-        "I have done it. I am not saying more than that.",
-      ],
+      text: "How satisfied are you with your current compensation — total package included?",
     },
     {
       id: 3,
-      text: "How much does knowing two colleagues are in a relationship change how you see team dynamics?",
+      text: "Has inflation changed how far your salary goes in the last 12 months?",
     },
     {
       id: 4,
-      text: "What would make you uncomfortable about a colleague relationship?",
-      options: [
-        "One of them is the other's manager.",
-        "They discuss team matters in private before meetings.",
-        "Everyone can tell but nobody is saying anything.",
-        "Things end badly and the whole team feels it.",
-        "Actually, nothing — it is their business.",
-      ],
+      text: "Which statement best describes your relationship with your salary right now?",
     },
     {
       id: 5,
-      text: "If you developed feelings for a colleague, what would you actually do?",
-      options: [
-        "Tell them. Life is short.",
-        "Keep it to myself and focus on work.",
-        "Start job hunting immediately.",
-        "Depends on the person, honestly.",
-      ],
+      text: "How does your pay reflect your qualifications and experience?",
     },
     {
       id: 6,
-      text: "How open is the culture at your workplace about personal relationships?",
+      text: "Did your educational qualifications meaningfully increase your earning power?",
     },
     {
       id: 7,
-      text: "What do Nigerian workplaces get most wrong about relationships at work?",
-      options: [
-        "They pretend it does not happen when everyone knows it does.",
-        "They make policies instead of having honest conversations.",
-        "They treat it as a discipline issue instead of a people issue.",
-        "They only act when things go wrong, never before.",
-      ],
+      text: "Have you ever negotiated your salary — at any point in your career?",
+    },
+    {
+      id: 8,
+      text: "Do you know what your colleagues earn — and does it affect you?",
+    },
+    {
+      id: 9,
+      text: "Do you have income outside your primary job — and why?",
+    },
+    {
+      id: 10,
+      text: "If you earn in naira, how has naira devaluation affected your financial reality?",
+    },
+    {
+      id: 11,
+      text: "Do you think your industry pays fairly compared to others in Nigeria?",
+    },
+    {
+      id: 12,
+      text: "Has staying loyal to one organisation paid off financially for you?",
+    },
+    {
+      id: 13,
+      text: "How would you rate your non-salary benefits — health, pension, leave, bonuses?",
+    },
+    {
+      id: 14,
+      text: "Compared to peers with similar experience, how do you feel about your pay?",
+    },
+    {
+      id: 15,
+      text: "In five years, what do you expect your compensation situation to look like?",
+    },
+    // Street Interview Questions
+    {
+      id: 16,
+      text: "Can you tell us — roughly — are you earning enough to live comfortably in this city right now?",
+    },
+    {
+      id: 17,
+      text: "When last did your salary increase — and did it feel like a real raise, or just a number on paper?",
+    },
+    {
+      id: 18,
+      text: "If you found out your colleague doing the exact same job as you earns 40% more — what would you do?",
+    },
+    {
+      id: 19,
+      text: "Do you have a side hustle? Be honest — is it a choice or a necessity?",
+    },
+    {
+      id: 20,
+      text: "Does your degree or qualification actually show up in your salary? Or was it just a ticket to get in the door?",
+    },
+    {
+      id: 21,
+      text: "Has the dollar rate affected how far your money goes this year?",
+    },
+    {
+      id: 22,
+      text: "If you could change one thing about how Nigerian employers pay their staff — what would it be?",
+    },
+    {
+      id: 23,
+      text: "Quick one — overpaid, underpaid, or fairly paid. Which one are you right now?",
     },
   ];
 
@@ -159,6 +192,11 @@ export default function ResultsPage() {
     if (answer === undefined) return "Not answered";
 
     const q = questions.find((q) => q.id === qId);
+
+    // Handle text questions (16-23)
+    if (qId >= 16 && qId <= 23) {
+      return typeof answer === "string" ? answer : String(answer);
+    }
 
     if (qId === 3 || qId === 6) {
       const labels = [
@@ -203,8 +241,7 @@ export default function ResultsPage() {
         <h2 className="font-['Playfair_Display'] text-3xl md:text-6xl font-black text-white leading-tight mb-3">
           You just added your
           <br />
-          voice to the{" "}
-          <em className="text-[#d4956a] italic not-italic">palava.</em>
+          voice to the <em className="text-[#d4956a] italic">palava.</em>
         </h2>
         <p className="text-sm md:text-base text-white/55 max-w-[500px] mx-auto mb-9 leading-relaxed">
           Your anonymous response has been recorded. Share this so others can
@@ -236,16 +273,16 @@ export default function ResultsPage() {
                 <span className="text-5xl">👨🏾‍💼</span>
               </div>
               <div className="bg-white rounded-xl px-4 py-2.5 text-[13px] font-semibold text-[#1a1009] inline-block shadow-[0_2px_8px_rgba(0,0,0,0.08)] relative after:content-[''] after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:border-8 after:border-transparent after:border-t-white after:border-b-0">
-                Office romance? I have THOUGHTS. 👀
+                Pay fairness? I have THOUGHTS. 👀
               </div>
             </div>
 
             <div className="font-['Playfair_Display'] text-lg font-bold text-[#1a1009] leading-tight mb-2">
-              I just took the StreetOps survey on office romance.
+              I just took the StreetOps survey on pay and compensation.
             </div>
             <div className="text-[13px] text-[#8a7a68] mb-5 leading-relaxed">
-              Nigerian workers are telling the truth about workplace
-              relationships. Anonymous. No judgment. Take yours too.
+              Nigerian workers are telling the truth about salary, benefits, and
+              pay fairness. Anonymous. No judgment. Take yours too.
             </div>
             <div className="text-xs font-semibold text-[#8b1a1a] tracking-[1px] uppercase">
               ask.streetops.ng
@@ -343,7 +380,7 @@ export default function ResultsPage() {
         </div>
         <h3 className="font-['Playfair_Display'] text-2xl md:text-3xl text-white mb-2">
           You are one of{" "}
-          <em className="text-[#d4956a] italic not-italic">
+          <em className="text-[#d4956a] italic">
             {isLoading ? "..." : totalResponses.toLocaleString()}
           </em>{" "}
           Nigerian workers who spoke up.
