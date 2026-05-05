@@ -269,7 +269,7 @@ export default function ResultsPage() {
             <div className="bg-green-200 rounded-2xl p-7 text-center mb-5 relative my-2">
               <div className="my-4">
                 <img
-                  src="https://res.cloudinary.com/deylyllwd/image/upload/v1777984203/Gemini_Generated_Image_8afcp8afcp8afcp8_pzudpw.png"
+                  src="https://res.cloudinary.com/deylyllwd/image/upload/v1777986063/Gemini_Generated_Image_8afcp8afcp8afcp8_1_stjlyg.avif"
                   alt="image"
                 />
               </div>
