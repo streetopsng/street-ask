@@ -6,10 +6,21 @@ export async function GET() {
   const client = await pool.connect();
 
   try {
-    // Get total responses count
+    // Get total responses count from pay_check-answers
     const totalResult = await client.query(`
-      SELECT COUNT(DISTINCT session_id) as total FROM users
+      SELECT COUNT(DISTINCT session_id) as total FROM "pay_check-answers"
     `);
+
+    console.log("Total responses:", totalResult.rows[0]?.total);
+
+    // Check if pay_check-answers table has data
+    const answersCount = await client.query(`
+      SELECT COUNT(*) as total FROM "pay_check-answers"
+    `);
+    console.log(
+      "Total answers in pay_check-answers:",
+      answersCount.rows[0]?.total,
+    );
 
     // Get demographics
     const demographics = await client.query(`
@@ -18,7 +29,7 @@ export async function GET() {
         industry as name, 
         COUNT(*) as count,
         ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 1) as percentage
-      FROM users 
+      FROM pay_check_users 
       WHERE industry IS NOT NULL AND industry != ''
       GROUP BY industry
       UNION ALL
@@ -27,7 +38,7 @@ export async function GET() {
         company_size as name, 
         COUNT(*) as count,
         ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 1) as percentage
-      FROM users 
+      FROM pay_check_users 
       WHERE company_size IS NOT NULL AND company_size != ''
       GROUP BY company_size
       UNION ALL
@@ -36,85 +47,77 @@ export async function GET() {
         role_level as name, 
         COUNT(*) as count,
         ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 1) as percentage
-      FROM users 
+      FROM pay_check_users 
       WHERE role_level IS NOT NULL AND role_level != ''
       GROUP BY role_level
     `);
 
-    // Your actual 13 questions
-    const questions = [1, 2, 3, 5, 6, 7, 8, 10, 11, 12, 14, 15, 16];
-    const analytics: { [key: number]: any[] } = {};
+    console.log("Demographics rows:", demographics.rows);
 
-    for (const questionId of questions) {
-      // For single answer questions (store as number in JSONB)
-      if ([1, 2, 3, 5, 7, 8, 10, 11, 12, 14, 15, 16].includes(questionId)) {
-        const result = await client.query(
-          `
+    // All questions: 15 single-answer + 8 text questions
+    const multipleChoiceQuestions = Array.from(
+      { length: 15 },
+      (_, index) => index + 1,
+    );
+    const textQuestions = Array.from({ length: 8 }, (_, index) => index + 16);
+    const analytics: { [key: number]: any[] } = {};
+    const textResponses: { [key: number]: any[] } = {};
+
+    // Check raw data
+    const rawData = await client.query(`
+      SELECT question_id, answer_type, answer_value FROM "pay_check-answers" LIMIT 10
+    `);
+    console.log("Sample raw data from pay_check-answers:", rawData.rows);
+
+    // Handle multiple choice questions
+    for (const questionId of multipleChoiceQuestions) {
+      const result = await client.query(
+        `
           SELECT 
             answer_value->>'value' as answer_key,
             COUNT(*) as count,
             ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 1) as percentage
-          FROM answers
-          WHERE question_id = $1
+          FROM "pay_check-answers"
+          WHERE question_id = $1 AND answer_type = 'single_answer'
           GROUP BY answer_value->>'value'
-          ORDER BY count DESC
+          ORDER BY CAST(answer_value->>'value' AS INTEGER)
           `,
-          [questionId],
-        );
+        [questionId],
+      );
 
-        analytics[questionId] = result.rows.map((row) => ({
-          answerValue: parseInt(row.answer_key),
-          count: parseInt(row.count),
-          percentage: parseFloat(row.percentage),
-        }));
-      }
+      console.log(`Question ${questionId} results:`, result.rows);
+      analytics[questionId] = result.rows.map((row) => ({
+        answerValue: parseInt(row.answer_key),
+        count: parseInt(row.count),
+        percentage: parseFloat(row.percentage),
+      }));
+    }
 
-      // For multiple choice question (id 6)
-      else if (questionId === 6) {
-        const result = await client.query(
-          `
+    // Handle text questions - get all responses
+    for (const questionId of textQuestions) {
+      const result = await client.query(
+        `
           SELECT 
-            answer_value,
-            COUNT(*) as count
-          FROM answers
-          WHERE question_id = $1
-          GROUP BY answer_value
+            answer_value->>'text' as text_response,
+            create_at as submitted_at
+          FROM "pay_check-answers"
+          WHERE question_id = $1 AND answer_type = 'single_answer'
+          ORDER BY create_at DESC
           `,
-          [questionId],
-        );
+        [questionId],
+      );
 
-        // Process multiple choice - count each option separately
-        const optionCounts: { [key: number]: number } = {};
-        let totalResponsesForQuestion = 0;
-
-        for (const row of result.rows) {
-          totalResponsesForQuestion += parseInt(row.count);
-          const answerObj = row.answer_value;
-          for (const [key, value] of Object.entries(answerObj)) {
-            if (value === true) {
-              const optionKey = parseInt(key);
-              optionCounts[optionKey] =
-                (optionCounts[optionKey] || 0) + parseInt(row.count);
-            }
-          }
-        }
-
-        analytics[questionId] = Object.entries(optionCounts).map(
-          ([key, count]) => ({
-            answerValue: parseInt(key),
-            count: count,
-            percentage: parseFloat(
-              ((count / totalResponsesForQuestion) * 100).toFixed(1),
-            ),
-          }),
-        );
-      }
+      textResponses[questionId] = result.rows.map((row) => ({
+        text: row.text_response,
+        submittedAt: row.submitted_at,
+      }));
     }
 
     return NextResponse.json({
       success: true,
       data: {
         analytics,
+        textResponses,
         totalResponses: parseInt(totalResult.rows[0]?.total || 0),
         demographics: demographics.rows,
       },

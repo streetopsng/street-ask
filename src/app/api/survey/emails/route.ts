@@ -18,7 +18,7 @@ export async function POST(request: Request) {
 
     // Check if email already exists
     const checkResult = await pool.query(
-      `SELECT id FROM user_emails WHERE email = $1`,
+      `SELECT id FROM pay_check_user_emails WHERE email = $1`,
       [email],
     );
 
@@ -31,7 +31,9 @@ export async function POST(request: Request) {
     }
 
     // Insert new email
-    await pool.query(`INSERT INTO user_emails (email) VALUES ($1)`, [email]);
+    await pool.query(`INSERT INTO pay_check_user_emails (email) VALUES ($1)`, [
+      email,
+    ]);
 
     return NextResponse.json({
       success: true,

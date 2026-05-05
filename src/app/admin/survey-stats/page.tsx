@@ -4,114 +4,140 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
-// Question texts for display - ONLY the 13 questions you have
+// Question texts for display - 15 survey questions + 8 street interview questions
 const questionTexts: { [key: number]: string } = {
-  1: "How common is romantic attraction between colleagues?",
-  2: "Have you ever had romantic feelings for someone you worked with?",
-  3: "How many people do you know who were involved with a colleague?",
-  5: "Have you ever been in a romantic relationship with a colleague?",
-  6: "How did it start? (Select all that apply)",
-  7: "Was the relationship between same level or senior?",
-  8: "Did anyone at work find out?",
-  10: "What happens to work performance?",
-  11: "Have you ever felt uncomfortable?",
-  12: "If relationship ended badly, what happens?",
-  14: "Does your organisation have a formal policy?",
-  15: "Who would you tell first?",
-  16: "Do Nigerian workplaces handle this well?",
+  1: "When your salary alert drops, what is your honest first thought?",
+  2: "How satisfied are you with your current compensation — total package included?",
+  3: "Has inflation changed how far your salary goes in the last 12 months?",
+  4: "Which statement best describes your relationship with your salary right now?",
+  5: "How does your pay reflect your qualifications and experience?",
+  6: "Did your educational qualifications meaningfully increase your earning power?",
+  7: "Have you ever negotiated your salary — at any point in your career?",
+  8: "Do you know what your colleagues earn — and does it affect you?",
+  9: "Do you have income outside your primary job — and why?",
+  10: "If you earn in naira, how has naira devaluation affected your financial reality?",
+  11: "Do you think your industry pays fairly compared to others in Nigeria?",
+  12: "Has staying loyal to one organisation paid off financially for you?",
+  13: "How would you rate your non-salary benefits — health, pension, leave, bonuses?",
+  14: "Compared to peers with similar experience, how do you feel about your pay?",
+  15: "In five years, what do you expect your compensation situation to look like?",
+  // Street Interview Questions
+  16: "Can you tell us — roughly — are you earning enough to live comfortably in this city right now?",
+  17: "When last did your salary increase — and did it feel like a real raise, or just a number on paper?",
+  18: "If you found out your colleague doing the exact same job as you earns 40% more — what would you do?",
+  19: "Do you have a side hustle? Be honest — is it a choice or a necessity?",
+  20: "Does your degree or qualification actually show up in your salary? Or was it just a ticket to get in the door?",
+  21: "Has the dollar rate affected how far your money goes this year?",
+  22: "If you could change one thing about how Nigerian employers pay their staff — what would it be?",
+  23: "Quick one — overpaid, underpaid, or fairly paid. Which one are you right now?",
 };
 
 // Map answer values to readable text
 const optionLabels: { [key: number]: { [key: number]: string } } = {
   1: {
-    1: "Very common — happens everywhere",
-    2: "Fairly common — more than people admit",
-    3: "It happens but people keep it quiet",
-    4: "Rare — most people are professional",
-    5: "I genuinely don't know",
+    1: "Finally — I earned this.",
+    2: "It's fine. Not great, not terrible.",
+    3: "It's insulting but I have bills to pay.",
+    4: "I immediately open job boards.",
+    5: "I don't even check anymore. What's the point.",
   },
   2: {
-    1: "Yes, and I acted on it",
-    2: "Yes, but I kept it to myself",
-    3: "No, never",
-    4: "I'm not sure — maybe",
+    1: "Very satisfied — I feel genuinely valued.",
+    2: "Somewhat satisfied — it could be better but I'm not complaining.",
+    3: "Neutral — I've accepted it.",
+    4: "Dissatisfied — I know I am underpaid.",
+    5: "Very dissatisfied — this is not sustainable.",
   },
   3: {
-    1: "None that I know of",
-    2: "One or two people",
-    3: "A lot — it's an open secret",
-    4: "I'd rather not say",
+    1: "Yes — dramatically. My salary is worth significantly less than it was.",
+    2: "Yes — noticeably. I've had to cut back on things.",
+    3: "Somewhat — I've felt it but I've managed.",
+    4: "Not really — I received a raise that kept pace.",
+    5: "No — my expenses haven't changed much.",
+  },
+  4: {
+    1: "It covers my needs and I have something left over.",
+    2: "It covers my needs but barely — nothing is left.",
+    3: "I cover my needs by supplementing with side income.",
+    4: "My salary alone does not cover my basic monthly needs.",
+    5: "I rely on family support or savings to bridge the gap.",
   },
   5: {
-    1: "Yes, after one of us left",
-    2: "Yes, while at same company",
-    3: "No, but it came close",
-    4: "No, never",
+    1: "Fairly — I am paid in line with what I bring.",
+    2: "I am slightly underpaid given my experience.",
+    3: "I am significantly underpaid. The gap is real.",
+    4: "I am overqualified for this role and it shows in the pay.",
+    5: "I've stopped thinking about it. Credentials don't guarantee anything here.",
   },
   6: {
-    1: "Working closely together on a project",
-    2: "After-work drinks or a team event",
-    3: "WhatsApp or DM conversations",
-    4: "It was obvious from day one",
-    5: "One person made a move",
-    6: "It just happened gradually",
-    7: "Prefer not to say",
+    1: "Yes — my degree or certifications directly unlocked better pay.",
+    2: "Somewhat — it got me in the door but the pay hasn't reflected it.",
+    3: "Not really — I know people without my qualifications earning more than me.",
+    4: "No — experience and connections mattered far more than paper.",
+    5: "I'm still paying off the education and the salary hasn't caught up.",
   },
   7: {
-    1: "Same level",
-    2: "One person was more senior",
-    3: "Manager and direct report",
-    4: "Not applicable",
-    5: "Prefer not to say",
+    1: "Yes, regularly — I always negotiate.",
+    2: "Yes, once or twice — with mixed results.",
+    3: "I tried once and it didn't go well. I haven't since.",
+    4: "No — I was too uncomfortable to try.",
+    5: "No — in Nigerian workplaces, you take what they offer or leave.",
   },
   8: {
-    1: "Yes — most people knew",
-    2: "Yes — a few people knew",
-    3: "Only one or two people",
-    4: "No — completely private",
-    5: "Prefer not to say",
+    1: "Yes, I know — and I'm fine with it.",
+    2: "Yes, I know — and it bothers me significantly.",
+    3: "I have a rough idea and I'd rather not confirm it.",
+    4: "I don't know and I genuinely don't want to.",
+    5: "I don't know but I wish Nigerian workplaces were more open about pay.",
+  },
+  9: {
+    1: "Yes — by choice. I like the extra income and independence.",
+    2: "Yes — because my salary alone is not enough to survive on.",
+    3: "Yes — because I'm building something in case this job ends.",
+    4: "I've tried but haven't found something consistent yet.",
+    5: "No — my primary job pays well enough that I don't need to.",
   },
   10: {
-    1: "Performance improves",
-    2: "No real change",
-    3: "Depends how they handle it",
-    4: "Performance drops",
-    5: "Creates team problems",
+    1: "Severely — my effective purchasing power has collapsed.",
+    2: "Significantly — I've had to restructure how I spend and save.",
+    3: "Somewhat — I've noticed it but adapted.",
+    4: "Not much — my expenses are mostly local and stable.",
+    5: "I earn in a foreign currency — this doesn't apply to me.",
   },
   11: {
-    1: "Yes, significantly",
-    2: "Yes, mildly",
-    3: "Not really",
-    4: "No, never",
+    1: "Yes — my sector is competitive and pays well.",
+    2: "It's average. Not the best, not the worst.",
+    3: "No — I'm in a sector that is chronically underpaid.",
+    4: "Pay varies wildly within my sector — it depends entirely on the employer.",
+    5: "I honestly don't know what fair looks like anymore.",
   },
   12: {
-    1: "One person leaves",
-    2: "Stay professional but awkward",
-    3: "Team feels it for months",
-    4: "Depends on seniority",
-    5: "Never seen it end badly",
-    6: "Never seen it end well",
+    1: "Yes — my raises and promotions have been meaningful over time.",
+    2: "Not really — small increments that don't match my growth.",
+    3: "No — I've learned that job-hopping is the only real raise in Nigeria.",
+    4: "I haven't stayed long enough anywhere to find out.",
+    5: "Loyalty is a tax Nigerian workers pay to employers, not the other way around.",
+  },
+  13: {
+    1: "Excellent — they add real value to my total compensation.",
+    2: "Decent — they exist but nothing special.",
+    3: "Minimal — what benefits? It's just the salary.",
+    4: "On paper they exist. In practice they're inaccessible or unreliable.",
+    5: "I factor them out entirely when calculating if a job is worth it.",
   },
   14: {
-    1: "Yes and I know it",
-    2: "Yes but never read it",
-    3: "Think there is one",
-    4: "Definitely no policy",
-    5: "I don't know",
+    1: "I earn more — and I worked for it.",
+    2: "We're roughly similar. Feels fair.",
+    3: "I earn less and I know why — it was a conscious tradeoff.",
+    4: "I earn less and I don't fully understand why. It frustrates me.",
+    5: "I stopped comparing. It only makes it worse.",
   },
   15: {
-    1: "Nobody — keep private",
-    2: "Close colleague I trust",
-    3: "HR or management",
-    4: "Whoever relevant",
-    5: "Friends outside work",
-  },
-  16: {
-    1: "Yes — professionally",
-    2: "Somewhat — manage obvious cases",
-    3: "No — ignored or handled badly",
-    4: "Shouldn't need managing",
-    5: "Never thought about it",
+    1: "Better — I have a clear plan and I'm executing it.",
+    2: "Better — if the economy cooperates.",
+    3: "About the same. I'm not optimistic.",
+    4: "Honestly? I'm not sure Nigeria is where I'll be building my career.",
+    5: "I've stopped planning that far ahead. Survival is the current strategy.",
   },
 };
 
@@ -156,8 +182,10 @@ export default function AdminPage() {
     );
   }
 
-  // Your actual 13 questions
-  const regularQuestions = [1, 2, 3, 5, 6, 7, 8, 10, 11, 12, 14, 15, 16];
+  // All questions: 15 multiple choice + 8 text questions
+  const regularQuestions = Array.from({ length: 15 }, (_, index) => index + 1);
+  const textQuestions = Array.from({ length: 8 }, (_, index) => index + 16);
+  const allQuestions = [...regularQuestions, ...textQuestions];
 
   return (
     <div className="min-h-screen bg-[#1a1009]">
@@ -187,14 +215,22 @@ export default function AdminPage() {
 
       <div className="max-w-[1400px] mx-auto px-5 md:px-10 py-10">
         <div className="space-y-6">
-          {regularQuestions.map((questionId, index) => {
-            const questionStats = stats?.analytics?.[questionId] || [];
+          {allQuestions.map((questionId, index) => {
+            const isTextQuestion = questionId >= 16;
+            const questionStats = isTextQuestion
+              ? null
+              : stats?.analytics?.[questionId] || [];
+            const textResponses = isTextQuestion
+              ? stats?.textResponses?.[questionId] || []
+              : null;
 
             // Calculate total responses for this question
-            const totalForQuestion = questionStats.reduce(
-              (sum: number, item: any) => sum + item.count,
-              0,
-            );
+            const totalForQuestion = isTextQuestion
+              ? textResponses?.length || 0
+              : questionStats?.reduce(
+                  (sum: number, item: any) => sum + item.count,
+                  0,
+                ) || 0;
 
             return (
               <div
@@ -212,7 +248,7 @@ export default function AdminPage() {
                 >
                   <div>
                     <span className="text-[#c0392b] font-bold text-sm">
-                      Q{index + 1}
+                      {isTextQuestion ? "STREET" : `Q${index + 1}`}
                     </span>
                     <h3 className="text-white font-semibold text-lg mt-1">
                       {questionTexts[questionId]}
@@ -229,11 +265,33 @@ export default function AdminPage() {
                 {/* Expandable content */}
                 {expandedQuestion === questionId && (
                   <div className="px-6 pb-6 space-y-4">
-                    {questionStats.length === 0 ? (
-                      <p className="text-white/40 text-center py-4">
-                        No responses yet
-                      </p>
-                    ) : (
+                    {isTextQuestion ? (
+                      // Text question responses
+                      textResponses && textResponses.length > 0 ? (
+                        <div className="space-y-3">
+                          {textResponses.map((response: any, idx: number) => (
+                            <div
+                              key={idx}
+                              className="bg-white/5 rounded-lg p-4"
+                            >
+                              <p className="text-white/80 text-sm leading-relaxed">
+                                "{response.text}"
+                              </p>
+                              <p className="text-white/40 text-xs mt-2">
+                                {new Date(
+                                  response.submittedAt,
+                                ).toLocaleDateString()}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-white/40 text-center py-4">
+                          No responses yet
+                        </p>
+                      )
+                    ) : // Multiple choice question stats
+                    questionStats && questionStats.length > 0 ? (
                       questionStats.map((item: any, idx: number) => {
                         const label =
                           optionLabels[questionId]?.[item.answerValue] ||
@@ -257,6 +315,10 @@ export default function AdminPage() {
                           </div>
                         );
                       })
+                    ) : (
+                      <p className="text-white/40 text-center py-4">
+                        No responses yet
+                      </p>
                     )}
                   </div>
                 )}
