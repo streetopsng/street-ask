@@ -27,9 +27,7 @@ const questionTexts: { [key: number]: string } = {
   18: "If you found out your colleague doing the exact same job as you earns 40% more — what would you do?",
   19: "Do you have a side hustle? Be honest — is it a choice or a necessity?",
   20: "Does your degree or qualification actually show up in your salary? Or was it just a ticket to get in the door?",
-  21: "Has the dollar rate affected how far your money goes this year?",
   22: "If you could change one thing about how Nigerian employers pay their staff — what would it be?",
-  23: "Quick one — overpaid, underpaid, or fairly paid. Which one are you right now?",
 };
 
 // Map answer values to readable text
@@ -182,9 +180,9 @@ export default function AdminPage() {
     );
   }
 
-  // All questions: 15 multiple choice + 8 text questions
+  // All questions: 15 multiple choice + 6 text questions (optional)
   const regularQuestions = Array.from({ length: 15 }, (_, index) => index + 1);
-  const textQuestions = Array.from({ length: 8 }, (_, index) => index + 16);
+  const textQuestions = [16, 17, 18, 19, 20, 22];
   const allQuestions = [...regularQuestions, ...textQuestions];
 
   return (

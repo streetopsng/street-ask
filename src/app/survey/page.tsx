@@ -538,20 +538,9 @@ const streetInterviewQuestions = [
     type: "text" as const,
   },
   {
-    id: 21,
-    question: "Has the dollar rate affected how far your money goes this year?",
-    type: "text" as const,
-  },
-  {
     id: 22,
     question:
       "If you could change one thing about how Nigerian employers pay their staff — what would it be?",
-    type: "text" as const,
-  },
-  {
-    id: 23,
-    question:
-      "Quick one — overpaid, underpaid, or fairly paid. Which one are you right now?",
     type: "text" as const,
   },
 ];
@@ -587,7 +576,8 @@ export default function SurveyPage() {
     if (isMultipleChoiceSection) {
       return answers[q.id] !== undefined;
     } else {
-      return textAnswers[q.id] !== undefined && textAnswers[q.id].trim() !== "";
+      // Street interview questions are optional
+      return true;
     }
   };
 
