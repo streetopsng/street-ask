@@ -258,7 +258,7 @@ export default function ResultsPage() {
               </div>
             </div>
             {/* bg-gradient-to-br from-[#fff0e6] to-[#ffe4d4] */}
-            <div className="bg-green-200 rounded-2xl p-7 text-center mb-5 relative my-2">
+            <div className="bg-gradient-to-br from-[#fff0e6] to-[#ffe4d4] rounded-2xl p-7 text-center mb-5 relative my-2">
               <div className="my-4">
                 <img
                   src="https://res.cloudinary.com/deylyllwd/image/upload/v1778046803/street-ask_nbyyrb.jpg"
