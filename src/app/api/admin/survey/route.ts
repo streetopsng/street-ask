@@ -54,12 +54,12 @@ export async function GET() {
 
     console.log("Demographics rows:", demographics.rows);
 
-    // All questions: 15 single-answer + 8 text questions
+    // All questions: 15 single-answer + 6 optional text questions
     const multipleChoiceQuestions = Array.from(
       { length: 15 },
       (_, index) => index + 1,
     );
-    const textQuestions = Array.from({ length: 8 }, (_, index) => index + 16);
+    const textQuestions = [16, 17, 18, 19, 20, 22];
     const analytics: { [key: number]: any[] } = {};
     const textResponses: { [key: number]: any[] } = {};
 

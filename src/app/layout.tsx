@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     url: "https://ask.streetops.ng/",
     images: [
       {
-        url: "https://res.cloudinary.com/deylyllwd/image/upload/v1777986063/Gemini_Generated_Image_8afcp8afcp8afcp8_1_stjlyg.avif",
+        url: "https://res.cloudinary.com/deylyllwd/image/upload/v1778046803/street-ask_nbyyrb.jpg",
       },
     ],
     type: "website",

@@ -174,16 +174,8 @@ export default function ResultsPage() {
       text: "Does your degree or qualification actually show up in your salary? Or was it just a ticket to get in the door?",
     },
     {
-      id: 21,
-      text: "Has the dollar rate affected how far your money goes this year?",
-    },
-    {
       id: 22,
       text: "If you could change one thing about how Nigerian employers pay their staff — what would it be?",
-    },
-    {
-      id: 23,
-      text: "Quick one — overpaid, underpaid, or fairly paid. Which one are you right now?",
     },
   ];
 
@@ -269,7 +261,7 @@ export default function ResultsPage() {
             <div className="bg-green-200 rounded-2xl p-7 text-center mb-5 relative my-2">
               <div className="my-4">
                 <img
-                  src="https://res.cloudinary.com/deylyllwd/image/upload/v1777986063/Gemini_Generated_Image_8afcp8afcp8afcp8_1_stjlyg.avif"
+                  src="https://res.cloudinary.com/deylyllwd/image/upload/v1778046803/street-ask_nbyyrb.jpg"
                   alt="image"
                 />
               </div>
