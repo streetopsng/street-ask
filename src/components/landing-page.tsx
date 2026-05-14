@@ -81,9 +81,9 @@ export default function LandingPage() {
 
       {/* Hero Section */}
       <div className="relative bg-gradient-to-br from-[#2c1810] via-[#1a0c06] to-[#3d1515] px-5 md:px-[60px] py-15 md:py-25 overflow-hidden">
-        <div className="absolute font-['Playfair_Display'] text-[200px] font-black text-white/3 top-[-40px] right-[-40px] pointer-events-none select-none">
+        {/* <div className="absolute font-['Playfair_Display'] text-[200px] font-black text-white/3 top-[-40px] right-[-40px] pointer-events-none select-none">
           ❤️
-        </div>
+        </div> */}
         <div className="flex items-center gap-3 mb-6">
           <div className="w-8 h-0.5 bg-[#c0392b]"></div>
           <span className="text-[11px] font-semibold tracking-[4px] uppercase text-[#c0392b]">
