@@ -40,24 +40,16 @@ export const GET = async () => {
     const response = await pool.query(`
             SELECT COUNT(DISTINCT session_id) FROM "pay_check-answers"
             `);
-    // console.log(response.rows.length, "total lenght");
+    console.log(response.rows.length, "total lenght");
 
     return NextResponse.json(
       {
         success: true,
         message: "success",
+        data: response.rows[0],
       },
       { status: 200 },
     );
-
-    // return NextResponse.json(
-    //   {
-    //     success: true,
-    //     message: "success",
-    //     data: response.rows[0],
-    //   },
-    //   { status: 200 },
-    // );
   } catch (error) {
     console.log(error);
 
