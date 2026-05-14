@@ -27,26 +27,37 @@ export const GET = async () => {
     //   created_at TIMESTAMP DEFAULT NOW() NOT NULL
     // )`);
 
-    //   await pool.query(`CREATE TABLE IF NOT EXISTS pay_check_user_emails (
+    // await pool.query(`CREATE TABLE IF NOT EXISTS pay_check_user_emails (
     //   id SERIAL PRIMARY KEY,
     //   email TEXT NOT NULL
     // )`);
     //   return NextResponse.json({ success: true });
-    // await pool.query(`TRUNCATE TABLE "pay_check-answers", pay_check_users RESTART IDENTITY CASCADE`);
+    // await pool.query(
+    //   `TRUNCATE TABLE "pay_check-answers", pay_check_users RESTART IDENTITY CASCADE`,
+    // );
 
+    // actual
     const response = await pool.query(`
             SELECT COUNT(DISTINCT session_id) FROM "pay_check-answers"
             `);
-    console.log(response.rows.length, "total lenght");
+    // console.log(response.rows.length, "total lenght");
 
     return NextResponse.json(
       {
         success: true,
         message: "success",
-        data: response.rows[0],
       },
       { status: 200 },
     );
+
+    // return NextResponse.json(
+    //   {
+    //     success: true,
+    //     message: "success",
+    //     data: response.rows[0],
+    //   },
+    //   { status: 200 },
+    // );
   } catch (error) {
     console.log(error);
 
