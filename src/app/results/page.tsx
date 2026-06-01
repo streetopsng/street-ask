@@ -91,126 +91,36 @@ export default function ResultsPage() {
     fetchTotalResponses();
   }, []);
 
-  const questions: { id: number; text: string; options?: string[] }[] = [
-    {
-      id: 1,
-      text: "When your salary alert drops, what is your honest first thought?",
-    },
-    {
-      id: 2,
-      text: "How satisfied are you with your current compensation — total package included?",
-    },
-    {
-      id: 3,
-      text: "Has inflation changed how far your salary goes in the last 12 months?",
-    },
-    {
-      id: 4,
-      text: "Which statement best describes your relationship with your salary right now?",
-    },
-    {
-      id: 5,
-      text: "How does your pay reflect your qualifications and experience?",
-    },
-    {
-      id: 6,
-      text: "Did your educational qualifications meaningfully increase your earning power?",
-    },
-    {
-      id: 7,
-      text: "Have you ever negotiated your salary — at any point in your career?",
-    },
-    {
-      id: 8,
-      text: "Do you know what your colleagues earn — and does it affect you?",
-    },
-    {
-      id: 9,
-      text: "Do you have income outside your primary job — and why?",
-    },
-    {
-      id: 10,
-      text: "If you earn in naira, how has naira devaluation affected your financial reality?",
-    },
-    {
-      id: 11,
-      text: "Do you think your industry pays fairly compared to others in Nigeria?",
-    },
-    {
-      id: 12,
-      text: "Has staying loyal to one organisation paid off financially for you?",
-    },
-    {
-      id: 13,
-      text: "How would you rate your non-salary benefits — health, pension, leave, bonuses?",
-    },
-    {
-      id: 14,
-      text: "Compared to peers with similar experience, how do you feel about your pay?",
-    },
-    {
-      id: 15,
-      text: "In five years, what do you expect your compensation situation to look like?",
-    },
-    // Street Interview Questions
-    {
-      id: 16,
-      text: "Can you tell us — roughly — are you earning enough to live comfortably in this city right now?",
-    },
-    {
-      id: 17,
-      text: "When last did your salary increase — and did it feel like a real raise, or just a number on paper?",
-    },
-    {
-      id: 18,
-      text: "If you found out your colleague doing the exact same job as you earns 40% more — what would you do?",
-    },
-    {
-      id: 19,
-      text: "Do you have a side hustle? Be honest — is it a choice or a necessity?",
-    },
-    {
-      id: 20,
-      text: "Does your degree or qualification actually show up in your salary? Or was it just a ticket to get in the door?",
-    },
-    {
-      id: 22,
-      text: "If you could change one thing about how Nigerian employers pay their staff — what would it be?",
-    },
+  const questions: { id: number; text: string }[] = [
+    { id: 1, text: "When your boss calls you outside work hours, what do you do?" },
+    { id: 2, text: "What is the lunch break culture at your workplace?" },
+    { id: 3, text: "How does your boss handle office politics?" },
+    { id: 4, text: "Your boss clearly has a favourite. What do you do?" },
+    { id: 5, text: "Has a boss ever taken credit for your work?" },
+    { id: 6, text: "Your boss is in a bad mood. What happens to the office?" },
+    { id: 7, text: "Has a boss ever used your salary or job security as emotional leverage?" },
+    { id: 8, text: "How would you describe the atmosphere your boss creates?" },
+    { id: 9, text: "When you disagree with your boss, what happens?" },
+    { id: 10, text: "How does your organisation handle promotions?" },
+    { id: 11, text: "Does your workplace have an HR department that functions?" },
+    { id: 12, text: "Have you ever had a workplace right violated?" },
+    { id: 13, text: "If you had a workplace grievance, what would you do?" },
+    { id: 14, text: "How does your organisation talk about staff wellbeing?" },
+    { id: 15, text: "Does your organisation have HR policies you've seen and understood?" },
+    { id: 16, text: "How environmentally or socially conscious is your workplace?" },
+    { id: 17, text: "What is your honest view of the typical Nigerian boss?" },
+    { id: 18, text: "How does your boss respond to feedback?" },
+    { id: 19, text: "If you could change one thing about how your boss leads, what would it be?" },
+    { id: 20, text: "How do you feel about your workplace right now?" },
   ];
 
   const getAnswerText = (qId: number): string => {
     const answer = answers[qId];
     if (answer === undefined) return "Not answered";
 
-    const q = questions.find((q) => q.id === qId);
-
-    // Handle text questions (16-23)
-    if (qId >= 16 && qId <= 23) {
-      return typeof answer === "string" ? answer : String(answer);
-    }
-
-    if (qId === 3 || qId === 6) {
-      const labels = [
-        "Not at all",
-        "Barely",
-        "Somewhat",
-        "Quite a bit",
-        "Very much",
-      ];
-      return `${answer} out of 5 — ${labels[answer - 1]}`;
-    }
-
-    if (typeof answer === "object" && !Array.isArray(answer)) {
-      const selected = Object.keys(answer)
-        .map((i) => q?.options?.[parseInt(i)])
-        .filter(Boolean)
-        .join(", ");
-      return selected || "Nothing selected";
-    }
-
-    if (typeof answer === "number" && q?.options) {
-      return q.options[answer];
+    if (typeof answer === "number") {
+      const letters = ["A", "B", "C", "D", "E"];
+      return letters[answer - 1] || String(answer);
     }
 
     return String(answer);

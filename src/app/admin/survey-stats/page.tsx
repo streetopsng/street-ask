@@ -4,138 +4,171 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
-// Question texts for display - 15 survey questions + 8 street interview questions
+// Question texts for display - 20 multiple choice questions
 const questionTexts: { [key: number]: string } = {
-  1: "When your salary alert drops, what is your honest first thought?",
-  2: "How satisfied are you with your current compensation — total package included?",
-  3: "Has inflation changed how far your salary goes in the last 12 months?",
-  4: "Which statement best describes your relationship with your salary right now?",
-  5: "How does your pay reflect your qualifications and experience?",
-  6: "Did your educational qualifications meaningfully increase your earning power?",
-  7: "Have you ever negotiated your salary — at any point in your career?",
-  8: "Do you know what your colleagues earn — and does it affect you?",
-  9: "Do you have income outside your primary job — and why?",
-  10: "If you earn in naira, how has naira devaluation affected your financial reality?",
-  11: "Do you think your industry pays fairly compared to others in Nigeria?",
-  12: "Has staying loyal to one organisation paid off financially for you?",
-  13: "How would you rate your non-salary benefits — health, pension, leave, bonuses?",
-  14: "Compared to peers with similar experience, how do you feel about your pay?",
-  15: "In five years, what do you expect your compensation situation to look like?",
-  // Street Interview Questions
-  16: "Can you tell us — roughly — are you earning enough to live comfortably in this city right now?",
-  17: "When last did your salary increase — and did it feel like a real raise, or just a number on paper?",
-  18: "If you found out your colleague doing the exact same job as you earns 40% more — what would you do?",
-  19: "Do you have a side hustle? Be honest — is it a choice or a necessity?",
-  20: "Does your degree or qualification actually show up in your salary? Or was it just a ticket to get in the door?",
-  22: "If you could change one thing about how Nigerian employers pay their staff — what would it be?",
+  1: "When your boss calls you outside work hours, what do you do?",
+  2: "What is the lunch break culture at your workplace?",
+  3: "How does your boss handle office politics?",
+  4: "Your boss clearly has a favourite. What do you do?",
+  5: "Has a boss ever taken credit for your work?",
+  6: "Your boss is in a bad mood. What happens to the office?",
+  7: "Has a boss ever used your salary or job security as emotional leverage?",
+  8: "How would you describe the atmosphere your boss creates?",
+  9: "When you disagree with your boss, what happens?",
+  10: "How does your organisation handle promotions?",
+  11: "Does your workplace have an HR department that functions?",
+  12: "Have you ever had a workplace right violated?",
+  13: "If you had a workplace grievance, what would you do?",
+  14: "How does your organisation talk about staff wellbeing?",
+  15: "Does your organisation have HR policies you've seen and understood?",
+  16: "How environmentally or socially conscious is your workplace?",
+  17: "What is your honest view of the typical Nigerian boss?",
+  18: "How does your boss respond to feedback?",
+  19: "If you could change one thing about how your boss leads, what would it be?",
+  20: "How do you feel about your workplace right now?",
 };
 
 // Map answer values to readable text
 const optionLabels: { [key: number]: { [key: number]: string } } = {
   1: {
-    1: "Finally — I earned this.",
-    2: "It's fine. Not great, not terrible.",
-    3: "It's insulting but I have bills to pay.",
-    4: "I immediately open job boards.",
-    5: "I don't even check anymore. What's the point.",
+    1: "Pick up immediately — always.",
+    2: "Pick up, but I'm annoyed every time.",
+    3: "Depends on the time and the boss.",
+    4: "I finish what I'm doing, then call back.",
+    5: "I have a whole system for avoiding it.",
   },
   2: {
-    1: "Very satisfied — I feel genuinely valued.",
-    2: "Somewhat satisfied — it could be better but I'm not complaining.",
-    3: "Neutral — I've accepted it.",
-    4: "Dissatisfied — I know I am underpaid.",
-    5: "Very dissatisfied — this is not sustainable.",
+    1: "One hour, protected, no questions asked.",
+    2: "There's officially a break. Nobody takes it.",
+    3: "Lunch happens at the desk while working.",
+    4: "My boss eats. I watch.",
+    5: "What is lunch.",
   },
   3: {
-    1: "Yes — dramatically. My salary is worth significantly less than it was.",
-    2: "Yes — noticeably. I've had to cut back on things.",
-    3: "Somewhat — I've felt it but I've managed.",
-    4: "Not really — I received a raise that kept pace.",
-    5: "No — my expenses haven't changed much.",
+    1: "They rise above it completely.",
+    2: "They play it well — probably too well.",
+    3: "They are the source of most of it.",
+    4: "They ignore it and call it professionalism.",
+    5: "It's chaos and nobody is managing anything.",
   },
   4: {
-    1: "It covers my needs and I have something left over.",
-    2: "It covers my needs but barely — nothing is left.",
-    3: "I cover my needs by supplementing with side income.",
-    4: "My salary alone does not cover my basic monthly needs.",
-    5: "I rely on family support or savings to bridge the gap.",
+    1: "Accept it and stay in my lane.",
+    2: "Try to become the favourite too.",
+    3: "Work twice as hard to make results undeniable.",
+    4: "Complain about it with the other non-favourites.",
+    5: "Start updating my CV.",
   },
   5: {
-    1: "Fairly — I am paid in line with what I bring.",
-    2: "I am slightly underpaid given my experience.",
-    3: "I am significantly underpaid. The gap is real.",
-    4: "I am overqualified for this role and it shows in the pay.",
-    5: "I've stopped thinking about it. Credentials don't guarantee anything here.",
+    1: "Yes — regularly.",
+    2: "Yes — once or twice.",
+    3: "I think so, but I can't prove it.",
+    4: "No, my contributions are always acknowledged.",
+    5: "I've learned to make sure they can't.",
   },
   6: {
-    1: "Yes — my degree or certifications directly unlocked better pay.",
-    2: "Somewhat — it got me in the door but the pay hasn't reflected it.",
-    3: "Not really — I know people without my qualifications earning more than me.",
-    4: "No — experience and connections mattered far more than paper.",
-    5: "I'm still paying off the education and the salary hasn't caught up.",
+    1: "Everyone feels it immediately and adjusts.",
+    2: "The brave ones carry on normally.",
+    3: "Meetings get called. Nobody knows why.",
+    4: "Work slows down until they calm down.",
+    5: "This is just called Tuesday.",
   },
   7: {
-    1: "Yes, regularly — I always negotiate.",
-    2: "Yes, once or twice — with mixed results.",
-    3: "I tried once and it didn't go well. I haven't since.",
-    4: "No — I was too uncomfortable to try.",
-    5: "No — in Nigerian workplaces, you take what they offer or leave.",
+    1: "Yes — openly.",
+    2: "Yes — it was framed as motivation.",
+    3: "It was implied, never said directly.",
+    4: "I don't think so.",
+    5: "I left a job because of this.",
   },
   8: {
-    1: "Yes, I know — and I'm fine with it.",
-    2: "Yes, I know — and it bothers me significantly.",
-    3: "I have a rough idea and I'd rather not confirm it.",
-    4: "I don't know and I genuinely don't want to.",
-    5: "I don't know but I wish Nigerian workplaces were more open about pay.",
+    1: "Safe — I can be honest with them.",
+    2: "Professional but guarded — I watch what I say.",
+    3: "Anxious — I'm always reading the room.",
+    4: "Unpredictable — it changes with their mood.",
+    5: "I've checked out. It doesn't reach me anymore.",
   },
   9: {
-    1: "Yes — by choice. I like the extra income and independence.",
-    2: "Yes — because my salary alone is not enough to survive on.",
-    3: "Yes — because I'm building something in case this job ends.",
-    4: "I've tried but haven't found something consistent yet.",
-    5: "No — my primary job pays well enough that I don't need to.",
+    1: "We discuss it — they're genuinely open.",
+    2: "I raise it carefully and it sometimes lands.",
+    3: "I package it so it feels like their idea.",
+    4: "I keep it to myself. It's not worth it.",
+    5: "I learned my lesson. I don't disagree anymore.",
   },
   10: {
-    1: "Severely — my effective purchasing power has collapsed.",
-    2: "Significantly — I've had to restructure how I spend and save.",
-    3: "Somewhat — I've noticed it but adapted.",
-    4: "Not much — my expenses are mostly local and stable.",
-    5: "I earn in a foreign currency — this doesn't apply to me.",
+    1: "Merit — clear criteria, transparent process.",
+    2: "Seniority — you wait your turn.",
+    3: "Relationships — who your boss likes.",
+    4: "Whoever stays latest and shouts loudest.",
+    5: "I genuinely don't know what the criteria is.",
   },
   11: {
-    1: "Yes — my sector is competitive and pays well.",
-    2: "It's average. Not the best, not the worst.",
-    3: "No — I'm in a sector that is chronically underpaid.",
-    4: "Pay varies wildly within my sector — it depends entirely on the employer.",
-    5: "I honestly don't know what fair looks like anymore.",
+    1: "Yes — accessible, useful, and trusted.",
+    2: "Yes — but they work for the company, not the staff.",
+    3: "It exists on paper. That's about it.",
+    4: "HR is one person who also does three other jobs.",
+    5: "No HR. The boss is HR.",
   },
   12: {
-    1: "Yes — my raises and promotions have been meaningful over time.",
-    2: "Not really — small increments that don't match my growth.",
-    3: "No — I've learned that job-hopping is the only real raise in Nigeria.",
-    4: "I haven't stayed long enough anywhere to find out.",
-    5: "Loyalty is a tax Nigerian workers pay to employers, not the other way around.",
+    1: "Yes — and I knew immediately.",
+    2: "Yes — I only found out later.",
+    3: "Possibly, but I wasn't sure enough to act.",
+    4: "I don't know enough about my rights to say.",
+    5: "Not that I'm aware of.",
   },
   13: {
-    1: "Excellent — they add real value to my total compensation.",
-    2: "Decent — they exist but nothing special.",
-    3: "Minimal — what benefits? It's just the salary.",
-    4: "On paper they exist. In practice they're inaccessible or unreliable.",
-    5: "I factor them out entirely when calculating if a job is worth it.",
+    1: "Raise it formally through the proper channel.",
+    2: "Talk to someone I trust internally first.",
+    3: "Document everything quietly and wait.",
+    4: "Start looking for another job.",
+    5: "Nothing — it wouldn't make a difference.",
   },
   14: {
-    1: "I earn more — and I worked for it.",
-    2: "We're roughly similar. Feels fair.",
-    3: "I earn less and I know why — it was a conscious tradeoff.",
-    4: "I earn less and I don't fully understand why. It frustrates me.",
-    5: "I stopped comparing. It only makes it worse.",
+    1: "They walk the talk — it's genuine.",
+    2: "They try, but it's mostly surface level.",
+    3: "It's mentioned in the handbook. That's it.",
+    4: "The concept has not arrived here yet.",
+    5: "My boss thinks long hours are a wellness strategy.",
   },
   15: {
-    1: "Better — I have a clear plan and I'm executing it.",
-    2: "Better — if the economy cooperates.",
-    3: "About the same. I'm not optimistic.",
-    4: "Honestly? I'm not sure Nigeria is where I'll be building my career.",
-    5: "I've stopped planning that far ahead. Survival is the current strategy.",
+    1: "Yes — clear, accessible, and enforced.",
+    2: "They exist but nobody reads them.",
+    3: "I was given something at onboarding. Haven't seen it since.",
+    4: "I don't think formal policies exist here.",
+    5: "The policy is whatever the boss decides that day.",
+  },
+  16: {
+    1: "Very — sustainability is built into how we operate.",
+    2: "We talk about it but I haven't seen much action.",
+    3: "There's a recycling bin somewhere. That's it.",
+    4: "It has never come up.",
+    5: "We're focused on survival. Green is not on the agenda.",
+  },
+  17: {
+    1: "Hardworking, demanding, but fair when it matters.",
+    2: "Talented but uncomfortable with being challenged.",
+    3: "Loyal to power, not to people.",
+    4: "Managing the way they were managed — and it shows.",
+    5: "Trying their best in a system that wasn't built for good leadership.",
+  },
+  18: {
+    1: "Openly — they encourage it.",
+    2: "They say they want it. The reaction tells a different story.",
+    3: "Feedback flows one direction here.",
+    4: "I've never seen anyone try. I'm not going first.",
+    5: "Someone tried once. We don't talk about it.",
+  },
+  19: {
+    1: "Separate their mood from their management.",
+    2: "Give credit where it's due.",
+    3: "Understand that respect is not the same as fear.",
+    4: "Read the labour law.",
+    5: "Just be human about it. That's all.",
+  },
+  20: {
+    1: "Good — I feel valued and it shows.",
+    2: "Fine. It pays the bills and I've made peace with that.",
+    3: "Tired. I'm doing good work in a system that doesn't reward it.",
+    4: "I'm here physically. I left mentally a while ago.",
+    5: "Looking. This is not it.",
   },
 };
 
@@ -180,10 +213,8 @@ export default function AdminPage() {
     );
   }
 
-  // All questions: 15 multiple choice + 6 text questions (optional)
-  const regularQuestions = Array.from({ length: 15 }, (_, index) => index + 1);
-  const textQuestions = [16, 17, 18, 19, 20, 22];
-  const allQuestions = [...regularQuestions, ...textQuestions];
+  // All 20 multiple choice questions
+  const allQuestions = Array.from({ length: 20 }, (_, index) => index + 1);
 
   return (
     <div className="min-h-screen bg-[#1a1009]">
@@ -214,21 +245,13 @@ export default function AdminPage() {
       <div className="max-w-[1400px] mx-auto px-5 md:px-10 py-10">
         <div className="space-y-6">
           {allQuestions.map((questionId, index) => {
-            const isTextQuestion = questionId >= 16;
-            const questionStats = isTextQuestion
-              ? null
-              : stats?.analytics?.[questionId] || [];
-            const textResponses = isTextQuestion
-              ? stats?.textResponses?.[questionId] || []
-              : null;
+            const questionStats = stats?.analytics?.[questionId] || [];
 
             // Calculate total responses for this question
-            const totalForQuestion = isTextQuestion
-              ? textResponses?.length || 0
-              : questionStats?.reduce(
-                  (sum: number, item: any) => sum + item.count,
-                  0,
-                ) || 0;
+            const totalForQuestion = questionStats?.reduce(
+              (sum: number, item: any) => sum + item.count,
+              0,
+            ) || 0;
 
             return (
               <div
@@ -246,7 +269,7 @@ export default function AdminPage() {
                 >
                   <div>
                     <span className="text-[#c0392b] font-bold text-sm">
-                      {isTextQuestion ? "STREET" : `Q${index + 1}`}
+                      Q{index + 1}
                     </span>
                     <h3 className="text-white font-semibold text-lg mt-1">
                       {questionTexts[questionId]}
@@ -263,33 +286,7 @@ export default function AdminPage() {
                 {/* Expandable content */}
                 {expandedQuestion === questionId && (
                   <div className="px-6 pb-6 space-y-4">
-                    {isTextQuestion ? (
-                      // Text question responses
-                      textResponses && textResponses.length > 0 ? (
-                        <div className="space-y-3">
-                          {textResponses.map((response: any, idx: number) => (
-                            <div
-                              key={idx}
-                              className="bg-white/5 rounded-lg p-4"
-                            >
-                              <p className="text-white/80 text-sm leading-relaxed">
-                                "{response.text}"
-                              </p>
-                              <p className="text-white/40 text-xs mt-2">
-                                {new Date(
-                                  response.submittedAt,
-                                ).toLocaleDateString()}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <p className="text-white/40 text-center py-4">
-                          No responses yet
-                        </p>
-                      )
-                    ) : // Multiple choice question stats
-                    questionStats && questionStats.length > 0 ? (
+                    {questionStats && questionStats.length > 0 ? (
                       questionStats.map((item: any, idx: number) => {
                         const label =
                           optionLabels[questionId]?.[item.answerValue] ||

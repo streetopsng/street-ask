@@ -143,26 +143,20 @@ export default function LandingPage() {
           </span>
         </div>
         <h2 className="font-['Playfair_Display'] text-3xl md:text-4xl font-black text-[#1a1009] mb-1">
-          The State of SME Productivity
+          The Nigerian Boss Edition
         </h2>
         <p className="text-sm md:text-[15px] text-[#5c4a32] mb-7">
-          Issue 02 - Employee Salary and Compesation - May 2026
+          Issue 02 · The Nigerian Boss & Workplace Culture · June 2026
         </p>
         {/* Issue 01 · Romance &amp; Relationships at Work · April 2026 */}
 
         <div className="bg-white border border-[#8b1a1a]/20 rounded-2xl p-7 md:p-12 max-w-[720px] shadow-[0_4px_40px_rgba(139,26,26,0.06)]">
           <div className="font-['Playfair_Display'] text-2xl md:text-3xl font-bold text-[#1a1009] mb-3 leading-tight">
-            The Pay Check Edition —{" "}
+            The Nigerian Boss Edition —{" "}
             <span className="text-[#8b1a1a] italic">
-              Are Nigerians actually paid well?
+              What's your boss really like?
             </span>
           </div>
-          {/* <p className="text-sm md:text-[15px] text-[#5c4a32] leading-relaxed mb-8">
-            We want to understand how Nigerian workers really feel about
-            workplace romance, relationships, and all the palava that comes with
-            them. Anonymous. Honest. No judgment. Your responses directly shape
-            our April Street Pulse.
-          </p> */}
 
           <div className="mb-8">
             <div className="text-[11px] font-semibold tracking-[2px] uppercase text-[#8a7a68] mb-2.5">

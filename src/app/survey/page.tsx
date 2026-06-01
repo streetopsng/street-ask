@@ -26,522 +26,243 @@ interface Question {
 const questions: Question[] = [
   {
     id: 1,
-    question:
-      "When your salary alert drops, what is your honest first thought?",
-    section: 1,
+    question: "When your boss calls you outside work hours, what do you do?",
     options: [
-      { letter: "A", emoji: "🎉", text: "Finally — I earned this." },
-      { letter: "B", emoji: "😐", text: "It's fine. Not great, not terrible." },
-      {
-        letter: "C",
-        emoji: "😤",
-        text: "It's insulting but I have bills to pay.",
-      },
-      { letter: "D", emoji: "💼", text: "I immediately open job boards." },
-      {
-        letter: "E",
-        emoji: "😩",
-        text: "I don't even check anymore. What's the point.",
-      },
+      { letter: "A", emoji: "", text: "Pick up immediately — always." },
+      { letter: "B", emoji: "", text: "Pick up, but I'm annoyed every time." },
+      { letter: "C", emoji: "", text: "Depends on the time and the boss." },
+      { letter: "D", emoji: "", text: "I finish what I'm doing, then call back." },
+      { letter: "E", emoji: "", text: "I have a whole system for avoiding it." },
     ],
     type: "single answer",
   },
   {
     id: 2,
-    question:
-      "How satisfied are you with your current compensation — total package included?",
-    section: 1,
+    question: "What is the lunch break culture at your workplace?",
     options: [
-      {
-        letter: "A",
-        emoji: "🏆",
-        text: "Very satisfied — I feel genuinely valued.",
-      },
-      {
-        letter: "B",
-        emoji: "🙂",
-        text: "Somewhat satisfied — it could be better but I'm not complaining.",
-      },
-      { letter: "C", emoji: "😐", text: "Neutral — I've accepted it." },
-      {
-        letter: "D",
-        emoji: "😡",
-        text: "Dissatisfied — I know I am underpaid.",
-      },
-      {
-        letter: "E",
-        emoji: "🚫",
-        text: "Very dissatisfied — this is not sustainable.",
-      },
+      { letter: "A", emoji: "", text: "One hour, protected, no questions asked." },
+      { letter: "B", emoji: "", text: "There's officially a break. Nobody takes it." },
+      { letter: "C", emoji: "", text: "Lunch happens at the desk while working." },
+      { letter: "D", emoji: "", text: "My boss eats. I watch." },
+      { letter: "E", emoji: "", text: "What is lunch." },
     ],
     type: "single answer",
   },
   {
     id: 3,
-    question:
-      "Has inflation changed how far your salary goes in the last 12 months?",
-    section: 1,
+    question: "How does your boss handle office politics?",
     options: [
-      {
-        letter: "A",
-        emoji: "📉",
-        text: "Yes — dramatically. My salary is worth significantly less than it was.",
-      },
-      {
-        letter: "B",
-        emoji: "⚠️",
-        text: "Yes — noticeably. I've had to cut back on things.",
-      },
-      {
-        letter: "C",
-        emoji: "🤏",
-        text: "Somewhat — I've felt it but I've managed.",
-      },
-      {
-        letter: "D",
-        emoji: "✅",
-        text: "Not really — I received a raise that kept pace.",
-      },
-      {
-        letter: "E",
-        emoji: "🧾",
-        text: "No — my expenses haven't changed much.",
-      },
+      { letter: "A", emoji: "", text: "They rise above it completely." },
+      { letter: "B", emoji: "", text: "They play it well — probably too well." },
+      { letter: "C", emoji: "", text: "They are the source of most of it." },
+      { letter: "D", emoji: "", text: "They ignore it and call it professionalism." },
+      { letter: "E", emoji: "", text: "It's chaos and nobody is managing anything." },
     ],
     type: "single answer",
   },
   {
     id: 4,
-    question:
-      "Which statement best describes your relationship with your salary right now?",
-    section: 2,
+    question: "Your boss clearly has a favourite. What do you do?",
     options: [
-      {
-        letter: "A",
-        emoji: "💰",
-        text: "It covers my needs and I have something left over.",
-      },
-      {
-        letter: "B",
-        emoji: "🪙",
-        text: "It covers my needs but barely — nothing is left.",
-      },
-      {
-        letter: "C",
-        emoji: "🛠️",
-        text: "I cover my needs by supplementing with side income.",
-      },
-      {
-        letter: "D",
-        emoji: "⚠️",
-        text: "My salary alone does not cover my basic monthly needs.",
-      },
-      {
-        letter: "E",
-        emoji: "🏦",
-        text: "I rely on family support or savings to bridge the gap.",
-      },
+      { letter: "A", emoji: "", text: "Accept it and stay in my lane." },
+      { letter: "B", emoji: "", text: "Try to become the favourite too." },
+      { letter: "C", emoji: "", text: "Work twice as hard to make results undeniable." },
+      { letter: "D", emoji: "", text: "Complain about it with the other non-favourites." },
+      { letter: "E", emoji: "", text: "Start updating my CV." },
     ],
     type: "single answer",
   },
   {
     id: 5,
-    question: "How does your pay reflect your qualifications and experience?",
-    section: 2,
+    question: "Has a boss ever taken credit for your work?",
     options: [
-      {
-        letter: "A",
-        emoji: "✅",
-        text: "Fairly — I am paid in line with what I bring.",
-      },
-      {
-        letter: "B",
-        emoji: "🔎",
-        text: "I am slightly underpaid given my experience.",
-      },
-      {
-        letter: "C",
-        emoji: "📉",
-        text: "I am significantly underpaid. The gap is real.",
-      },
-      {
-        letter: "D",
-        emoji: "🎓",
-        text: "I am overqualified for this role and it shows in the pay.",
-      },
-      {
-        letter: "E",
-        emoji: "😔",
-        text: "I've stopped thinking about it. Credentials don't guarantee anything here.",
-      },
+      { letter: "A", emoji: "", text: "Yes — regularly." },
+      { letter: "B", emoji: "", text: "Yes — once or twice." },
+      { letter: "C", emoji: "", text: "I think so, but I can't prove it." },
+      { letter: "D", emoji: "", text: "No, my contributions are always acknowledged." },
+      { letter: "E", emoji: "", text: "I've learned to make sure they can't." },
     ],
     type: "single answer",
   },
   {
     id: 6,
-    question:
-      "Did your educational qualifications meaningfully increase your earning power?",
-    section: 2,
+    question: "Your boss is in a bad mood. What happens to the office?",
     options: [
-      {
-        letter: "A",
-        emoji: "🎓",
-        text: "Yes — my degree or certifications directly unlocked better pay.",
-      },
-      {
-        letter: "B",
-        emoji: "🤝",
-        text: "Somewhat — it got me in the door but the pay hasn't reflected it.",
-      },
-      {
-        letter: "C",
-        emoji: "📉",
-        text: "Not really — I know people without my qualifications earning more than me.",
-      },
-      {
-        letter: "D",
-        emoji: "🚫",
-        text: "No — experience and connections mattered far more than paper.",
-      },
-      {
-        letter: "E",
-        emoji: "💸",
-        text: "I'm still paying off the education and the salary hasn't caught up.",
-      },
+      { letter: "A", emoji: "", text: "Everyone feels it immediately and adjusts." },
+      { letter: "B", emoji: "", text: "The brave ones carry on normally." },
+      { letter: "C", emoji: "", text: "Meetings get called. Nobody knows why." },
+      { letter: "D", emoji: "", text: "Work slows down until they calm down." },
+      { letter: "E", emoji: "", text: "This is just called Tuesday." },
     ],
     type: "single answer",
   },
   {
     id: 7,
-    question:
-      "Have you ever negotiated your salary — at any point in your career?",
-    section: 3,
+    question: "Has a boss ever used your salary or job security as emotional leverage?",
     options: [
-      {
-        letter: "A",
-        emoji: "💪",
-        text: "Yes, regularly — I always negotiate.",
-      },
-      {
-        letter: "B",
-        emoji: "🗣️",
-        text: "Yes, once or twice — with mixed results.",
-      },
-      {
-        letter: "C",
-        emoji: "😬",
-        text: "I tried once and it didn't go well. I haven't since.",
-      },
-      {
-        letter: "D",
-        emoji: "🚫",
-        text: "No — I was too uncomfortable to try.",
-      },
-      {
-        letter: "E",
-        emoji: "🇳🇬",
-        text: "No — in Nigerian workplaces, you take what they offer or leave.",
-      },
+      { letter: "A", emoji: "", text: "Yes — openly." },
+      { letter: "B", emoji: "", text: "Yes — it was framed as motivation." },
+      { letter: "C", emoji: "", text: "It was implied, never said directly." },
+      { letter: "D", emoji: "", text: "I don't think so." },
+      { letter: "E", emoji: "", text: "I left a job because of this." },
     ],
     type: "single answer",
   },
   {
     id: 8,
-    question: "Do you know what your colleagues earn — and does it affect you?",
-    section: 3,
+    question: "How would you describe the atmosphere your boss creates?",
     options: [
-      { letter: "A", emoji: "✅", text: "Yes, I know — and I'm fine with it." },
-      {
-        letter: "B",
-        emoji: "😡",
-        text: "Yes, I know — and it bothers me significantly.",
-      },
-      {
-        letter: "C",
-        emoji: "🤐",
-        text: "I have a rough idea and I'd rather not confirm it.",
-      },
-      {
-        letter: "D",
-        emoji: "❓",
-        text: "I don't know and I genuinely don't want to.",
-      },
-      {
-        letter: "E",
-        emoji: "🇳🇬",
-        text: "I don't know but I wish Nigerian workplaces were more open about pay.",
-      },
+      { letter: "A", emoji: "", text: "Safe — I can be honest with them." },
+      { letter: "B", emoji: "", text: "Professional but guarded — I watch what I say." },
+      { letter: "C", emoji: "", text: "Anxious — I'm always reading the room." },
+      { letter: "D", emoji: "", text: "Unpredictable — it changes with their mood." },
+      { letter: "E", emoji: "", text: "I've checked out. It doesn't reach me anymore." },
     ],
     type: "single answer",
   },
   {
     id: 9,
-    question: "Do you have income outside your primary job — and why?",
-    section: 3,
+    question: "When you disagree with your boss, what happens?",
     options: [
-      {
-        letter: "A",
-        emoji: "💼",
-        text: "Yes — by choice. I like the extra income and independence.",
-      },
-      {
-        letter: "B",
-        emoji: "💸",
-        text: "Yes — because my salary alone is not enough to survive on.",
-      },
-      {
-        letter: "C",
-        emoji: "🚀",
-        text: "Yes — because I'm building something in case this job ends.",
-      },
-      {
-        letter: "D",
-        emoji: "⚠️",
-        text: "I've tried but haven't found something consistent yet.",
-      },
-      {
-        letter: "E",
-        emoji: "✅",
-        text: "No — my primary job pays well enough that I don't need to.",
-      },
+      { letter: "A", emoji: "", text: "We discuss it — they're genuinely open." },
+      { letter: "B", emoji: "", text: "I raise it carefully and it sometimes lands." },
+      { letter: "C", emoji: "", text: "I package it so it feels like their idea." },
+      { letter: "D", emoji: "", text: "I keep it to myself. It's not worth it." },
+      { letter: "E", emoji: "", text: "I learned my lesson. I don't disagree anymore." },
     ],
     type: "single answer",
   },
   {
     id: 10,
-    question:
-      "If you earn in naira, how has naira devaluation affected your financial reality?",
-    section: 4,
+    question: "How does your organisation handle promotions?",
     options: [
-      {
-        letter: "A",
-        emoji: "📉",
-        text: "Severely — my effective purchasing power has collapsed.",
-      },
-      {
-        letter: "B",
-        emoji: "⚠️",
-        text: "Significantly — I've had to restructure how I spend and save.",
-      },
-      {
-        letter: "C",
-        emoji: "🤏",
-        text: "Somewhat — I've noticed it but adapted.",
-      },
-      {
-        letter: "D",
-        emoji: "🪙",
-        text: "Not much — my expenses are mostly local and stable.",
-      },
-      {
-        letter: "E",
-        emoji: "🌍",
-        text: "I earn in a foreign currency — this doesn't apply to me.",
-      },
+      { letter: "A", emoji: "", text: "Merit — clear criteria, transparent process." },
+      { letter: "B", emoji: "", text: "Seniority — you wait your turn." },
+      { letter: "C", emoji: "", text: "Relationships — who your boss likes." },
+      { letter: "D", emoji: "", text: "Whoever stays latest and shouts loudest." },
+      { letter: "E", emoji: "", text: "I genuinely don't know what the criteria is." },
     ],
     type: "single answer",
   },
   {
     id: 11,
-    question:
-      "Do you think your industry pays fairly compared to others in Nigeria?",
-    section: 4,
+    question: "Does your workplace have an HR department that functions?",
     options: [
-      {
-        letter: "A",
-        emoji: "✅",
-        text: "Yes — my sector is competitive and pays well.",
-      },
-      {
-        letter: "B",
-        emoji: "➖",
-        text: "It's average. Not the best, not the worst.",
-      },
-      {
-        letter: "C",
-        emoji: "🚫",
-        text: "No — I'm in a sector that is chronically underpaid.",
-      },
-      {
-        letter: "D",
-        emoji: "⚖️",
-        text: "Pay varies wildly within my sector — it depends entirely on the employer.",
-      },
-      {
-        letter: "E",
-        emoji: "🤷",
-        text: "I honestly don't know what fair looks like anymore.",
-      },
+      { letter: "A", emoji: "", text: "Yes — accessible, useful, and trusted." },
+      { letter: "B", emoji: "", text: "Yes — but they work for the company, not the staff." },
+      { letter: "C", emoji: "", text: "It exists on paper. That's about it." },
+      { letter: "D", emoji: "", text: "HR is one person who also does three other jobs." },
+      { letter: "E", emoji: "", text: "No HR. The boss is HR." },
     ],
     type: "single answer",
   },
   {
     id: 12,
-    question:
-      "Has staying loyal to one organisation paid off financially for you?",
-    section: 4,
+    question: "Have you ever had a workplace right violated?",
     options: [
-      {
-        letter: "A",
-        emoji: "🏆",
-        text: "Yes — my raises and promotions have been meaningful over time.",
-      },
-      {
-        letter: "B",
-        emoji: "🔁",
-        text: "Not really — small increments that don't match my growth.",
-      },
-      {
-        letter: "C",
-        emoji: "🚀",
-        text: "No — I've learned that job-hopping is the only real raise in Nigeria.",
-      },
-      {
-        letter: "D",
-        emoji: "⏳",
-        text: "I haven't stayed long enough anywhere to find out.",
-      },
-      {
-        letter: "E",
-        emoji: "💣",
-        text: "Loyalty is a tax Nigerian workers pay to employers, not the other way around.",
-      },
+      { letter: "A", emoji: "", text: "Yes — and I knew immediately." },
+      { letter: "B", emoji: "", text: "Yes — I only found out later." },
+      { letter: "C", emoji: "", text: "Possibly, but I wasn't sure enough to act." },
+      { letter: "D", emoji: "", text: "I don't know enough about my rights to say." },
+      { letter: "E", emoji: "", text: "Not that I'm aware of." },
     ],
     type: "single answer",
   },
   {
     id: 13,
-    question:
-      "How would you rate your non-salary benefits — health, pension, leave, bonuses?",
-    section: 5,
+    question: "If you had a workplace grievance, what would you do?",
     options: [
-      {
-        letter: "A",
-        emoji: "🌟",
-        text: "Excellent — they add real value to my total compensation.",
-      },
-      {
-        letter: "B",
-        emoji: "👍",
-        text: "Decent — they exist but nothing special.",
-      },
-      {
-        letter: "C",
-        emoji: "⚪",
-        text: "Minimal — what benefits? It's just the salary.",
-      },
-      {
-        letter: "D",
-        emoji: "👎",
-        text: "On paper they exist. In practice they're inaccessible or unreliable.",
-      },
-      {
-        letter: "E",
-        emoji: "✂️",
-        text: "I factor them out entirely when calculating if a job is worth it.",
-      },
+      { letter: "A", emoji: "", text: "Raise it formally through the proper channel." },
+      { letter: "B", emoji: "", text: "Talk to someone I trust internally first." },
+      { letter: "C", emoji: "", text: "Document everything quietly and wait." },
+      { letter: "D", emoji: "", text: "Start looking for another job." },
+      { letter: "E", emoji: "", text: "Nothing — it wouldn't make a difference." },
     ],
     type: "single answer",
   },
   {
     id: 14,
-    question:
-      "Compared to peers with similar experience, how do you feel about your pay?",
-    section: 5,
+    question: "How does your organisation talk about staff wellbeing?",
     options: [
-      { letter: "A", emoji: "⬆️", text: "I earn more — and I worked for it." },
-      { letter: "B", emoji: "⚖️", text: "We're roughly similar. Feels fair." },
-      {
-        letter: "C",
-        emoji: "📉",
-        text: "I earn less and I know why — it was a conscious tradeoff.",
-      },
-      {
-        letter: "D",
-        emoji: "😠",
-        text: "I earn less and I don't fully understand why. It frustrates me.",
-      },
-      {
-        letter: "E",
-        emoji: "🚫",
-        text: "I stopped comparing. It only makes it worse.",
-      },
+      { letter: "A", emoji: "", text: "They walk the talk — it's genuine." },
+      { letter: "B", emoji: "", text: "They try, but it's mostly surface level." },
+      { letter: "C", emoji: "", text: "It's mentioned in the handbook. That's it." },
+      { letter: "D", emoji: "", text: "The concept has not arrived here yet." },
+      { letter: "E", emoji: "", text: "My boss thinks long hours are a wellness strategy." },
     ],
     type: "single answer",
   },
   {
     id: 15,
-    question:
-      "In five years, what do you expect your compensation situation to look like?",
-    section: 5,
+    question: "Does your organisation have HR policies you've seen and understood?",
     options: [
-      {
-        letter: "A",
-        emoji: "📈",
-        text: "Better — I have a clear plan and I'm executing it.",
-      },
-      {
-        letter: "B",
-        emoji: "🤞",
-        text: "Better — if the economy cooperates.",
-      },
-      {
-        letter: "C",
-        emoji: "➖",
-        text: "About the same. I'm not optimistic.",
-      },
-      {
-        letter: "D",
-        emoji: "🌍",
-        text: "Honestly? I'm not sure Nigeria is where I'll be building my career.",
-      },
-      {
-        letter: "E",
-        emoji: "🛡️",
-        text: "I've stopped planning that far ahead. Survival is the current strategy.",
-      },
+      { letter: "A", emoji: "", text: "Yes — clear, accessible, and enforced." },
+      { letter: "B", emoji: "", text: "They exist but nobody reads them." },
+      { letter: "C", emoji: "", text: "I was given something at onboarding. Haven't seen it since." },
+      { letter: "D", emoji: "", text: "I don't think formal policies exist here." },
+      { letter: "E", emoji: "", text: "The policy is whatever the boss decides that day." },
     ],
     type: "single answer",
   },
-];
-
-// Street Interview Questions (Text-based)
-const streetInterviewQuestions = [
   {
     id: 16,
-    question:
-      "Can you tell us — roughly — are you earning enough to live comfortably in this city right now?",
-    type: "text" as const,
+    question: "How environmentally or socially conscious is your workplace?",
+    options: [
+      { letter: "A", emoji: "", text: "Very — sustainability is built into how we operate." },
+      { letter: "B", emoji: "", text: "We talk about it but I haven't seen much action." },
+      { letter: "C", emoji: "", text: "There's a recycling bin somewhere. That's it." },
+      { letter: "D", emoji: "", text: "It has never come up." },
+      { letter: "E", emoji: "", text: "We're focused on survival. Green is not on the agenda." },
+    ],
+    type: "single answer",
   },
   {
     id: 17,
-    question:
-      "When last did your salary increase — and did it feel like a real raise, or just a number on paper?",
-    type: "text" as const,
+    question: "What is your honest view of the typical Nigerian boss?",
+    options: [
+      { letter: "A", emoji: "", text: "Hardworking, demanding, but fair when it matters." },
+      { letter: "B", emoji: "", text: "Talented but uncomfortable with being challenged." },
+      { letter: "C", emoji: "", text: "Loyal to power, not to people." },
+      { letter: "D", emoji: "", text: "Managing the way they were managed — and it shows." },
+      { letter: "E", emoji: "", text: "Trying their best in a system that wasn't built for good leadership." },
+    ],
+    type: "single answer",
   },
   {
     id: 18,
-    question:
-      "If you found out your colleague doing the exact same job as you earns 40% more — what would you do?",
-    type: "text" as const,
+    question: "How does your boss respond to feedback?",
+    options: [
+      { letter: "A", emoji: "", text: "Openly — they encourage it." },
+      { letter: "B", emoji: "", text: "They say they want it. The reaction tells a different story." },
+      { letter: "C", emoji: "", text: "Feedback flows one direction here." },
+      { letter: "D", emoji: "", text: "I've never seen anyone try. I'm not going first." },
+      { letter: "E", emoji: "", text: "Someone tried once. We don't talk about it." },
+    ],
+    type: "single answer",
   },
   {
     id: 19,
-    question:
-      "Do you have a side hustle? Be honest — is it a choice or a necessity?",
-    type: "text" as const,
+    question: "If you could change one thing about how your boss leads, what would it be?",
+    options: [
+      { letter: "A", emoji: "", text: "Separate their mood from their management." },
+      { letter: "B", emoji: "", text: "Give credit where it's due." },
+      { letter: "C", emoji: "", text: "Understand that respect is not the same as fear." },
+      { letter: "D", emoji: "", text: "Read the labour law." },
+      { letter: "E", emoji: "", text: "Just be human about it. That's all." },
+    ],
+    type: "single answer",
   },
   {
     id: 20,
-    question:
-      "Does your degree or qualification actually show up in your salary? Or was it just a ticket to get in the door?",
-    type: "text" as const,
-  },
-  {
-    id: 22,
-    question:
-      "If you could change one thing about how Nigerian employers pay their staff — what would it be?",
-    type: "text" as const,
+    question: "How do you feel about your workplace right now?",
+    options: [
+      { letter: "A", emoji: "", text: "Good — I feel valued and it shows." },
+      { letter: "B", emoji: "", text: "Fine. It pays the bills and I've made peace with that." },
+      { letter: "C", emoji: "", text: "Tired. I'm doing good work in a system that doesn't reward it." },
+      { letter: "D", emoji: "", text: "I'm here physically. I left mentally a while ago." },
+      { letter: "E", emoji: "", text: "Looking. This is not it." },
+    ],
+    type: "single answer",
   },
 ];
 
@@ -551,8 +272,6 @@ export default function SurveyPage() {
   const [answers, setAnswers] = useState<SurveyAnswers>({});
   const [showSurveyComplete, setShowSurveyComplete] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [textAnswers, setTextAnswers] = useState<{ [key: number]: string }>({});
-
   // Organization form state - removed email
   const [orgForm, setOrgForm] = useState({
     industry: "",
@@ -560,25 +279,18 @@ export default function SurveyPage() {
     roleLevel: "",
   });
 
-  // Combine all questions
-  const allQuestions = [...questions, ...streetInterviewQuestions];
-  const total = allQuestions.length;
+  // All questions are multiple choice
+  const total = questions.length;
   const progress = ((currentQ + 1) / total) * 100;
-  const q = allQuestions[currentQ];
+  const q = questions[currentQ];
   const isLastQuestion = currentQ === total - 1;
-  const isMultipleChoiceSection = currentQ < questions.length;
 
   const selectSingle = (optIndex: number) => {
     setAnswers({ ...answers, [q.id]: optIndex });
   };
 
   const hasAnswer = (): boolean => {
-    if (isMultipleChoiceSection) {
-      return answers[q.id] !== undefined;
-    } else {
-      // Street interview questions are optional
-      return true;
-    }
+    return answers[q.id] !== undefined;
   };
 
   const nextQuestion = () => {
@@ -602,7 +314,7 @@ export default function SurveyPage() {
 
   const handleFinalSubmit = async () => {
     const finalAnswers = {
-      surveyAnswers: { ...answers, ...textAnswers },
+      surveyAnswers: { ...answers },
       organizationInfo: {
         industry: orgForm.industry,
         companySize: orgForm.companySize,
@@ -638,22 +350,6 @@ export default function SurveyPage() {
   };
 
   const renderQuestion = () => {
-    if (q.type === "text") {
-      return (
-        <div className="mb-10">
-          <textarea
-            value={textAnswers[q.id] || ""}
-            onChange={(e) =>
-              setTextAnswers({ ...textAnswers, [q.id]: e.target.value })
-            }
-            placeholder="Type your answer here..."
-            className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-[#c0392b] resize-none min-h-[120px]"
-            rows={4}
-          />
-        </div>
-      );
-    }
-
     if (!q.options) {
       return null;
     }
@@ -859,20 +555,6 @@ export default function SurveyPage() {
 
       <div className="max-w-[680px] mx-auto px-5 md:px-10 py-15 md:py-[60px] min-h-[calc(100vh-120px)] flex flex-col justify-center">
         <div className="animate-[slideIn_0.35s_ease_forwards]">
-          {/* Street Interview Section Header */}
-          {currentQ >= questions.length && (
-            <div className="text-center mb-8">
-              <div className="text-[11px] font-semibold tracking-[3px] uppercase text-[#c0392b] mb-2">
-                STREET INTERVIEW — 8 QUESTIONS
-              </div>
-              {/* <p className="text-white/60 text-sm">
-                Answer in any order, conversationally. The last one is a great
-                closer.
-              </p> */}
-              <div className="w-16 h-px bg-[#c0392b] mx-auto mt-4"></div>
-            </div>
-          )}
-
           <div className="font-['Playfair_Display'] text-2xl md:text-4xl font-bold text-white leading-tight mb-3">
             {q.question}
           </div>
