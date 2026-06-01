@@ -15,7 +15,7 @@ export const POST = async (req: NextRequest) => {
 
     await pool.query(
       `
-    INSERT INTO pay_check_users(session_id,industry,company_size,role_level,email)
+    INSERT INTO users(session_id,industry,company_size,role_level,email)
     VALUES ($1,$2,$3,$4,$5)
     `,
       [
@@ -47,7 +47,7 @@ export const POST = async (req: NextRequest) => {
 
       await pool.query(
         `
-    INSERT INTO "pay_check-answers" (session_id,question_id,answer_value,answer_type)
+    INSERT INTO answers (session_id,question_id,answer_value,answer_type)
     VALUES ($1,$2,$3::jsonb,$4)
     `,
         [sessionId, parseInt(questionId), jsonValue, "single_answer"],
