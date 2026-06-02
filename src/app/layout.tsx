@@ -23,11 +23,11 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "StreetAsk by StreetOps",
-    description: `Nigerian Boss Edition`,
+    description: `Street Ask: Nigerian Boss Edition`,
     url: "https://ask.streetops.ng/",
     images: [
       {
-        url: "https://res.cloudinary.com/deylyllwd/image/upload/v1780395560/street-ask-june_gznii7.png",
+        url: "https://res.cloudinary.com/deylyllwd/image/upload/v1780397940/street-ask-june_jlnk8e.jpg",
       },
     ],
     type: "website",

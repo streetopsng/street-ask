@@ -189,7 +189,7 @@ export default function ResultsPage() {
             <div className="bg-gradient-to-br from-[#fff0e6] to-[#ffe4d4] rounded-2xl p-7 text-center mb-5 relative my-2">
               <div className="my-4">
                 <img
-                  src="https://res.cloudinary.com/deylyllwd/image/upload/v1780395560/street-ask-june_gznii7.png"
+                  src="https://res.cloudinary.com/deylyllwd/image/upload/v1780397940/street-ask-june_jlnk8e.jpg"
                   alt="image"
                 />
               </div>
