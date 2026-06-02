@@ -272,6 +272,7 @@ export default function SurveyPage() {
   const [answers, setAnswers] = useState<SurveyAnswers>({});
   const [showSurveyComplete, setShowSurveyComplete] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showPrelude, setShowPrelude] = useState(true);
   // Organization form state - removed email
   const [orgForm, setOrgForm] = useState({
     industry: "",
@@ -555,6 +556,33 @@ export default function SurveyPage() {
 
       <div className="max-w-[680px] mx-auto px-5 md:px-10 py-15 md:py-[60px] min-h-[calc(100vh-120px)] flex flex-col justify-center">
         <div className="animate-[slideIn_0.35s_ease_forwards]">
+          {/* Prelude — first slide */}
+          {showPrelude ? (
+            <div className="text-center">
+              <div className="text-[11px] font-semibold tracking-[3px] uppercase text-[#c0392b] mb-6">
+                Prelude
+              </div>
+              <p className="text-white/70 text-sm md:text-[15px] leading-relaxed mb-4">
+                You've survived the salary conversation. Now we're going deeper.
+              </p>
+              <p className="text-white/70 text-sm md:text-[15px] leading-relaxed mb-4">
+                This month, StreetAsk is asking about the thing that shapes your entire work experience — the Nigerian boss. How they lead. How they make you feel. Whether they follow any rules. And whether any of it is working.
+              </p>
+              <p className="text-white/70 text-sm md:text-[15px] leading-relaxed mb-4">
+                Five topics. Twenty questions. All anonymous. All honest.
+              </p>
+              <p className="text-white/50 text-sm italic mb-8">
+                Because someone has to ask.
+              </p>
+              <button
+                onClick={() => setShowPrelude(false)}
+                className="bg-[#8b1a1a] text-white px-8 py-3.5 rounded-lg text-[15px] font-semibold flex items-center gap-2 mx-auto transition-all hover:bg-[#c0392b] hover:-translate-y-px hover:shadow-[0_8px_20px_rgba(139,26,26,0.3)]"
+              >
+                Begin Survey →
+              </button>
+            </div>
+          ) : (
+            <div>
           <div className="font-['Playfair_Display'] text-2xl md:text-4xl font-bold text-white leading-tight mb-3">
             {q.question}
           </div>
@@ -580,6 +608,8 @@ export default function SurveyPage() {
               {isLastQuestion ? "Complete Survey →" : "Next →"}
             </button>
           </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
