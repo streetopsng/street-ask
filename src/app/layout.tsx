@@ -23,11 +23,11 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "StreetAsk by StreetOps",
-    description: `Survey on Nigerian Employee Salary and Compensation`,
+    description: `Nigerian Boss Edition`,
     url: "https://ask.streetops.ng/",
     images: [
       {
-        url: "https://res.cloudinary.com/deylyllwd/image/upload/v1778046803/street-ask_nbyyrb.jpg",
+        url: "https://res.cloudinary.com/deylyllwd/image/upload/v1780395560/street-ask-june_gznii7.png",
       },
     ],
     type: "website",

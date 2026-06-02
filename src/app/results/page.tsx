@@ -92,25 +92,43 @@ export default function ResultsPage() {
   }, []);
 
   const questions: { id: number; text: string }[] = [
-    { id: 1, text: "When your boss calls you outside work hours, what do you do?" },
+    {
+      id: 1,
+      text: "When your boss calls you outside work hours, what do you do?",
+    },
     { id: 2, text: "What is the lunch break culture at your workplace?" },
     { id: 3, text: "How does your boss handle office politics?" },
     { id: 4, text: "Your boss clearly has a favourite. What do you do?" },
     { id: 5, text: "Has a boss ever taken credit for your work?" },
     { id: 6, text: "Your boss is in a bad mood. What happens to the office?" },
-    { id: 7, text: "Has a boss ever used your salary or job security as emotional leverage?" },
+    {
+      id: 7,
+      text: "Has a boss ever used your salary or job security as emotional leverage?",
+    },
     { id: 8, text: "How would you describe the atmosphere your boss creates?" },
     { id: 9, text: "When you disagree with your boss, what happens?" },
     { id: 10, text: "How does your organisation handle promotions?" },
-    { id: 11, text: "Does your workplace have an HR department that functions?" },
+    {
+      id: 11,
+      text: "Does your workplace have an HR department that functions?",
+    },
     { id: 12, text: "Have you ever had a workplace right violated?" },
     { id: 13, text: "If you had a workplace grievance, what would you do?" },
     { id: 14, text: "How does your organisation talk about staff wellbeing?" },
-    { id: 15, text: "Does your organisation have HR policies you've seen and understood?" },
-    { id: 16, text: "How environmentally or socially conscious is your workplace?" },
+    {
+      id: 15,
+      text: "Does your organisation have HR policies you've seen and understood?",
+    },
+    {
+      id: 16,
+      text: "How environmentally or socially conscious is your workplace?",
+    },
     { id: 17, text: "What is your honest view of the typical Nigerian boss?" },
     { id: 18, text: "How does your boss respond to feedback?" },
-    { id: 19, text: "If you could change one thing about how your boss leads, what would it be?" },
+    {
+      id: 19,
+      text: "If you could change one thing about how your boss leads, what would it be?",
+    },
     { id: 20, text: "How do you feel about your workplace right now?" },
   ];
 
@@ -171,7 +189,7 @@ export default function ResultsPage() {
             <div className="bg-gradient-to-br from-[#fff0e6] to-[#ffe4d4] rounded-2xl p-7 text-center mb-5 relative my-2">
               <div className="my-4">
                 <img
-                  src="https://res.cloudinary.com/deylyllwd/image/upload/v1778046803/street-ask_nbyyrb.jpg"
+                  src="https://res.cloudinary.com/deylyllwd/image/upload/v1780395560/street-ask-june_gznii7.png"
                   alt="image"
                 />
               </div>
