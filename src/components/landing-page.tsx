@@ -146,7 +146,7 @@ export default function LandingPage() {
           The Nigerian Boss Edition
         </h2>
         <p className="text-sm md:text-[15px] text-[#5c4a32] mb-7">
-          Issue 02 · The Nigerian Boss & Workplace Culture · June 2026
+          Issue 03 · The Nigerian Boss & Workplace Culture · July 2026
         </p>
         {/* Issue 01 · Romance &amp; Relationships at Work · April 2026 */}
 
@@ -154,7 +154,7 @@ export default function LandingPage() {
           <div className="font-['Playfair_Display'] text-2xl md:text-3xl font-bold text-[#1a1009] mb-3 leading-tight">
             The Nigerian Boss Edition —{" "}
             <span className="text-[#8b1a1a] italic">
-              What's your boss really like?
+              Do you tell your manager the truth?
             </span>
           </div>
 

@@ -54,9 +54,9 @@ export async function GET() {
 
     console.log("Demographics rows:", demographics.rows);
 
-    // All 20 multiple choice questions
+    // All 14 multiple choice questions
     const multipleChoiceQuestions = Array.from(
-      { length: 20 },
+      { length: 14 },
       (_, index) => index + 1,
     );
     const analytics: { [key: number]: any[] } = {};

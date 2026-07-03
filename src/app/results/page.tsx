@@ -92,44 +92,20 @@ export default function ResultsPage() {
   }, []);
 
   const questions: { id: number; text: string }[] = [
-    {
-      id: 1,
-      text: "When your boss calls you outside work hours, what do you do?",
-    },
-    { id: 2, text: "What is the lunch break culture at your workplace?" },
-    { id: 3, text: "How does your boss handle office politics?" },
-    { id: 4, text: "Your boss clearly has a favourite. What do you do?" },
-    { id: 5, text: "Has a boss ever taken credit for your work?" },
-    { id: 6, text: "Your boss is in a bad mood. What happens to the office?" },
-    {
-      id: 7,
-      text: "Has a boss ever used your salary or job security as emotional leverage?",
-    },
-    { id: 8, text: "How would you describe the atmosphere your boss creates?" },
-    { id: 9, text: "When you disagree with your boss, what happens?" },
-    { id: 10, text: "How does your organisation handle promotions?" },
-    {
-      id: 11,
-      text: "Does your workplace have an HR department that functions?",
-    },
-    { id: 12, text: "Have you ever had a workplace right violated?" },
-    { id: 13, text: "If you had a workplace grievance, what would you do?" },
-    { id: 14, text: "How does your organisation talk about staff wellbeing?" },
-    {
-      id: 15,
-      text: "Does your organisation have HR policies you've seen and understood?",
-    },
-    {
-      id: 16,
-      text: "How environmentally or socially conscious is your workplace?",
-    },
-    { id: 17, text: "What is your honest view of the typical Nigerian boss?" },
-    { id: 18, text: "How does your boss respond to feedback?" },
-    {
-      id: 19,
-      text: "If you could change one thing about how your boss leads, what would it be?",
-    },
-    { id: 20, text: "How do you feel about your workplace right now?" },
+    { id: 1, text: "If you're 100% honest, how truthful are you with your manager on a typical day at work?" },
+    { id: 2, text: "Your manager walks past your desk unannounced. What's the first thing that happens?" },
+    { id: 3, text: "It's 4:45pm and your manager is still in the office. What's your move?" },
+    { id: 4, text: "How do you talk about your manager when they're not in the room, versus when they are?" },
+    { id: 5, text: "You notice your manager taking credit for a colleague's work. What do you do?" },
+    { id: 6, text: "If you had to report something wrong at work, how would you prefer to do it?" },
+    { id: 7, text: "If reporting a wrongdoing could cost you your job, would you still do it?" },
+    { id: 8, text: "In your exit interview (real or imagined), what would you REALLY say about why you're leaving?" },
+    { id: 9, text: "Would you mention your manager by name if they were the real reason you left?" },
+    { id: 10, text: "Would you recommend your current company to a friend looking for a job?" },
+    { id: 11, text: "If you were rating your manager anonymously, how honest would you be — really?" },
+    { id: 12, text: "Have you ever given positive feedback you didn't fully believe, just to avoid conflict?" },
+    { id: 13, text: "Has fear of being identified ever stopped you from giving honest feedback?" },
+    { id: 14, text: "If your manager could read your mind for one day, how differently would things go?" },
   ];
 
   const getAnswerText = (qId: number): string => {
@@ -137,7 +113,7 @@ export default function ResultsPage() {
     if (answer === undefined) return "Not answered";
 
     if (typeof answer === "number") {
-      const letters = ["A", "B", "C", "D", "E"];
+      const letters = ["A", "B", "C", "D"];
       return letters[answer - 1] || String(answer);
     }
 

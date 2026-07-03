@@ -26,241 +26,155 @@ interface Question {
 const questions: Question[] = [
   {
     id: 1,
-    question: "When your boss calls you outside work hours, what do you do?",
+    question: "If you're 100% honest, how truthful are you with your manager on a typical day at work?",
     options: [
-      { letter: "A", emoji: "", text: "Pick up immediately — always." },
-      { letter: "B", emoji: "", text: "Pick up, but I'm annoyed every time." },
-      { letter: "C", emoji: "", text: "Depends on the time and the boss." },
-      { letter: "D", emoji: "", text: "I finish what I'm doing, then call back." },
-      { letter: "E", emoji: "", text: "I have a whole system for avoiding it." },
+      { letter: "A", emoji: "", text: "Fully honest - I say what I mean, always" },
+      { letter: "B", emoji: "", text: "Mostly honest, but I sugarcoat the hard parts" },
+      { letter: "C", emoji: "", text: "I tell them what keeps the peace, not what's real" },
+      { letter: "D", emoji: "", text: "Honestly? I've mastered the art of \"everything is fine\"" },
     ],
     type: "single answer",
   },
   {
     id: 2,
-    question: "What is the lunch break culture at your workplace?",
+    question: "Your manager walks past your desk unannounced. What's the first thing that happens?",
     options: [
-      { letter: "A", emoji: "", text: "One hour, protected, no questions asked." },
-      { letter: "B", emoji: "", text: "There's officially a break. Nobody takes it." },
-      { letter: "C", emoji: "", text: "Lunch happens at the desk while working." },
-      { letter: "D", emoji: "", text: "My boss eats. I watch." },
-      { letter: "E", emoji: "", text: "What is lunch." },
+      { letter: "A", emoji: "", text: "Nothing changes - I'm already focused" },
+      { letter: "B", emoji: "", text: "I sit up straighter and look extra busy" },
+      { letter: "C", emoji: "", text: "I suddenly remember 3 \"urgent\" tasks" },
+      { letter: "D", emoji: "", text: "I greet him like he just walked into a party" },
     ],
     type: "single answer",
   },
   {
     id: 3,
-    question: "How does your boss handle office politics?",
+    question: "It's 4:45pm and your manager is still in the office. What's your move?",
     options: [
-      { letter: "A", emoji: "", text: "They rise above it completely." },
-      { letter: "B", emoji: "", text: "They play it well — probably too well." },
-      { letter: "C", emoji: "", text: "They are the source of most of it." },
-      { letter: "D", emoji: "", text: "They ignore it and call it professionalism." },
-      { letter: "E", emoji: "", text: "It's chaos and nobody is managing anything." },
+      { letter: "A", emoji: "", text: "I leave at my normal closing time regardless" },
+      { letter: "B", emoji: "", text: "I stay back a little, just to be seen" },
+      { letter: "C", emoji: "", text: "I wait until he leaves, then I leave 2 minutes after" },
+      { letter: "D", emoji: "", text: "I find one more \"task\" to look busy with" },
     ],
     type: "single answer",
   },
   {
     id: 4,
-    question: "Your boss clearly has a favourite. What do you do?",
+    question: "How do you talk about your manager when they're not in the room, versus when they are?",
     options: [
-      { letter: "A", emoji: "", text: "Accept it and stay in my lane." },
-      { letter: "B", emoji: "", text: "Try to become the favourite too." },
-      { letter: "C", emoji: "", text: "Work twice as hard to make results undeniable." },
-      { letter: "D", emoji: "", text: "Complain about it with the other non-favourites." },
-      { letter: "E", emoji: "", text: "Start updating my CV." },
+      { letter: "A", emoji: "", text: "The same way, always" },
+      { letter: "B", emoji: "", text: "Slightly more critical when they're away" },
+      { letter: "C", emoji: "", text: "Very different - two completely different conversations" },
+      { letter: "D", emoji: "", text: "Let's just say the group chat knows things he doesn't" },
     ],
     type: "single answer",
   },
   {
     id: 5,
-    question: "Has a boss ever taken credit for your work?",
+    question: "You notice your manager taking credit for a colleague's work. What do you do?",
     options: [
-      { letter: "A", emoji: "", text: "Yes — regularly." },
-      { letter: "B", emoji: "", text: "Yes — once or twice." },
-      { letter: "C", emoji: "", text: "I think so, but I can't prove it." },
-      { letter: "D", emoji: "", text: "No, my contributions are always acknowledged." },
-      { letter: "E", emoji: "", text: "I've learned to make sure they can't." },
+      { letter: "A", emoji: "", text: "I report it to HR or someone above" },
+      { letter: "B", emoji: "", text: "I tell my colleague privately but stay out of it" },
+      { letter: "C", emoji: "", text: "I say nothing - it's not my business" },
+      { letter: "D", emoji: "", text: "I joke about it in the group chat, hoping someone notices" },
     ],
     type: "single answer",
   },
   {
     id: 6,
-    question: "Your boss is in a bad mood. What happens to the office?",
+    question: "If you had to report something wrong at work, how would you prefer to do it?",
     options: [
-      { letter: "A", emoji: "", text: "Everyone feels it immediately and adjusts." },
-      { letter: "B", emoji: "", text: "The brave ones carry on normally." },
-      { letter: "C", emoji: "", text: "Meetings get called. Nobody knows why." },
-      { letter: "D", emoji: "", text: "Work slows down until they calm down." },
-      { letter: "E", emoji: "", text: "This is just called Tuesday." },
+      { letter: "A", emoji: "", text: "Openly, with my name attached" },
+      { letter: "B", emoji: "", text: "Anonymously, but I'd still report it" },
+      { letter: "C", emoji: "", text: "I probably wouldn't report it at all" },
+      { letter: "D", emoji: "", text: "I'd only report it if others joined me" },
     ],
     type: "single answer",
   },
   {
     id: 7,
-    question: "Has a boss ever used your salary or job security as emotional leverage?",
+    question: "If reporting a wrongdoing could cost you your job, would you still do it?",
     options: [
-      { letter: "A", emoji: "", text: "Yes — openly." },
-      { letter: "B", emoji: "", text: "Yes — it was framed as motivation." },
-      { letter: "C", emoji: "", text: "It was implied, never said directly." },
-      { letter: "D", emoji: "", text: "I don't think so." },
-      { letter: "E", emoji: "", text: "I left a job because of this." },
+      { letter: "A", emoji: "", text: "Yes, some things matter more than a job" },
+      { letter: "B", emoji: "", text: "It depends on how serious it is" },
+      { letter: "C", emoji: "", text: "No - I have bills and responsibilities" },
+      { letter: "D", emoji: "", text: "I'd find an anonymous way to raise it" },
     ],
     type: "single answer",
   },
   {
     id: 8,
-    question: "How would you describe the atmosphere your boss creates?",
+    question: "In your exit interview (real or imagined), what would you REALLY say about why you're leaving?",
     options: [
-      { letter: "A", emoji: "", text: "Safe — I can be honest with them." },
-      { letter: "B", emoji: "", text: "Professional but guarded — I watch what I say." },
-      { letter: "C", emoji: "", text: "Anxious — I'm always reading the room." },
-      { letter: "D", emoji: "", text: "Unpredictable — it changes with their mood." },
-      { letter: "E", emoji: "", text: "I've checked out. It doesn't reach me anymore." },
+      { letter: "A", emoji: "", text: "The exact truth, even if uncomfortable" },
+      { letter: "B", emoji: "", text: "A polished version of the truth" },
+      { letter: "C", emoji: "", text: "\"Better opportunity\" - even if that's not the full story" },
+      { letter: "D", emoji: "", text: "I'd say just enough to leave clean, nothing more" },
     ],
     type: "single answer",
   },
   {
     id: 9,
-    question: "When you disagree with your boss, what happens?",
+    question: "Would you mention your manager by name if they were the real reason you left?",
     options: [
-      { letter: "A", emoji: "", text: "We discuss it — they're genuinely open." },
-      { letter: "B", emoji: "", text: "I raise it carefully and it sometimes lands." },
-      { letter: "C", emoji: "", text: "I package it so it feels like their idea." },
-      { letter: "D", emoji: "", text: "I keep it to myself. It's not worth it." },
-      { letter: "E", emoji: "", text: "I learned my lesson. I don't disagree anymore." },
+      { letter: "A", emoji: "", text: "Yes, they deserve to know" },
+      { letter: "B", emoji: "", text: "Only if I'm directly asked" },
+      { letter: "C", emoji: "", text: "No, I'd keep it general" },
+      { letter: "D", emoji: "", text: "I'd mention it to HR only, never to the manager" },
     ],
     type: "single answer",
   },
   {
     id: 10,
-    question: "How does your organisation handle promotions?",
+    question: "Would you recommend your current company to a friend looking for a job?",
     options: [
-      { letter: "A", emoji: "", text: "Merit — clear criteria, transparent process." },
-      { letter: "B", emoji: "", text: "Seniority — you wait your turn." },
-      { letter: "C", emoji: "", text: "Relationships — who your boss likes." },
-      { letter: "D", emoji: "", text: "Whoever stays latest and shouts loudest." },
-      { letter: "E", emoji: "", text: "I genuinely don't know what the criteria is." },
+      { letter: "A", emoji: "", text: "Yes, honestly and without hesitation" },
+      { letter: "B", emoji: "", text: "Yes, but with a few honest warnings" },
+      { letter: "C", emoji: "", text: "I'd be diplomatic and avoid the full truth" },
+      { letter: "D", emoji: "", text: "No, but I'd never say that officially" },
     ],
     type: "single answer",
   },
   {
     id: 11,
-    question: "Does your workplace have an HR department that functions?",
+    question: "If you were rating your manager anonymously, how honest would you be — really?",
     options: [
-      { letter: "A", emoji: "", text: "Yes — accessible, useful, and trusted." },
-      { letter: "B", emoji: "", text: "Yes — but they work for the company, not the staff." },
-      { letter: "C", emoji: "", text: "It exists on paper. That's about it." },
-      { letter: "D", emoji: "", text: "HR is one person who also does three other jobs." },
-      { letter: "E", emoji: "", text: "No HR. The boss is HR." },
+      { letter: "A", emoji: "", text: "Very honest - that's the whole point" },
+      { letter: "B", emoji: "", text: "Honest, but I soften the harsh points" },
+      { letter: "C", emoji: "", text: "I rate generously to avoid problems" },
+      { letter: "D", emoji: "", text: "I don't fully trust it's anonymous, so I play safe" },
     ],
     type: "single answer",
   },
   {
     id: 12,
-    question: "Have you ever had a workplace right violated?",
+    question: "Have you ever given positive feedback you didn't fully believe, just to avoid conflict?",
     options: [
-      { letter: "A", emoji: "", text: "Yes — and I knew immediately." },
-      { letter: "B", emoji: "", text: "Yes — I only found out later." },
-      { letter: "C", emoji: "", text: "Possibly, but I wasn't sure enough to act." },
-      { letter: "D", emoji: "", text: "I don't know enough about my rights to say." },
-      { letter: "E", emoji: "", text: "Not that I'm aware of." },
+      { letter: "A", emoji: "", text: "Never - I only say what I mean" },
+      { letter: "B", emoji: "", text: "Rarely, but it has happened" },
+      { letter: "C", emoji: "", text: "Often - it's easier that way" },
+      { letter: "D", emoji: "", text: "Almost always, if I'm honest" },
     ],
     type: "single answer",
   },
   {
     id: 13,
-    question: "If you had a workplace grievance, what would you do?",
+    question: "Has fear of being identified ever stopped you from giving honest feedback?",
     options: [
-      { letter: "A", emoji: "", text: "Raise it formally through the proper channel." },
-      { letter: "B", emoji: "", text: "Talk to someone I trust internally first." },
-      { letter: "C", emoji: "", text: "Document everything quietly and wait." },
-      { letter: "D", emoji: "", text: "Start looking for another job." },
-      { letter: "E", emoji: "", text: "Nothing — it wouldn't make a difference." },
+      { letter: "A", emoji: "", text: "Never - I say what I mean regardless" },
+      { letter: "B", emoji: "", text: "Occasionally, on sensitive topics" },
+      { letter: "C", emoji: "", text: "Often - I always play it safe" },
+      { letter: "D", emoji: "", text: "Every single time" },
     ],
     type: "single answer",
   },
   {
     id: 14,
-    question: "How does your organisation talk about staff wellbeing?",
+    question: "If your manager could read your mind for one day, how differently would things go?",
     options: [
-      { letter: "A", emoji: "", text: "They walk the talk — it's genuine." },
-      { letter: "B", emoji: "", text: "They try, but it's mostly surface level." },
-      { letter: "C", emoji: "", text: "It's mentioned in the handbook. That's it." },
-      { letter: "D", emoji: "", text: "The concept has not arrived here yet." },
-      { letter: "E", emoji: "", text: "My boss thinks long hours are a wellness strategy." },
-    ],
-    type: "single answer",
-  },
-  {
-    id: 15,
-    question: "Does your organisation have HR policies you've seen and understood?",
-    options: [
-      { letter: "A", emoji: "", text: "Yes — clear, accessible, and enforced." },
-      { letter: "B", emoji: "", text: "They exist but nobody reads them." },
-      { letter: "C", emoji: "", text: "I was given something at onboarding. Haven't seen it since." },
-      { letter: "D", emoji: "", text: "I don't think formal policies exist here." },
-      { letter: "E", emoji: "", text: "The policy is whatever the boss decides that day." },
-    ],
-    type: "single answer",
-  },
-  {
-    id: 16,
-    question: "How environmentally or socially conscious is your workplace?",
-    options: [
-      { letter: "A", emoji: "", text: "Very — sustainability is built into how we operate." },
-      { letter: "B", emoji: "", text: "We talk about it but I haven't seen much action." },
-      { letter: "C", emoji: "", text: "There's a recycling bin somewhere. That's it." },
-      { letter: "D", emoji: "", text: "It has never come up." },
-      { letter: "E", emoji: "", text: "We're focused on survival. Green is not on the agenda." },
-    ],
-    type: "single answer",
-  },
-  {
-    id: 17,
-    question: "What is your honest view of the typical Nigerian boss?",
-    options: [
-      { letter: "A", emoji: "", text: "Hardworking, demanding, but fair when it matters." },
-      { letter: "B", emoji: "", text: "Talented but uncomfortable with being challenged." },
-      { letter: "C", emoji: "", text: "Loyal to power, not to people." },
-      { letter: "D", emoji: "", text: "Managing the way they were managed — and it shows." },
-      { letter: "E", emoji: "", text: "Trying their best in a system that wasn't built for good leadership." },
-    ],
-    type: "single answer",
-  },
-  {
-    id: 18,
-    question: "How does your boss respond to feedback?",
-    options: [
-      { letter: "A", emoji: "", text: "Openly — they encourage it." },
-      { letter: "B", emoji: "", text: "They say they want it. The reaction tells a different story." },
-      { letter: "C", emoji: "", text: "Feedback flows one direction here." },
-      { letter: "D", emoji: "", text: "I've never seen anyone try. I'm not going first." },
-      { letter: "E", emoji: "", text: "Someone tried once. We don't talk about it." },
-    ],
-    type: "single answer",
-  },
-  {
-    id: 19,
-    question: "If you could change one thing about how your boss leads, what would it be?",
-    options: [
-      { letter: "A", emoji: "", text: "Separate their mood from their management." },
-      { letter: "B", emoji: "", text: "Give credit where it's due." },
-      { letter: "C", emoji: "", text: "Understand that respect is not the same as fear." },
-      { letter: "D", emoji: "", text: "Read the labour law." },
-      { letter: "E", emoji: "", text: "Just be human about it. That's all." },
-    ],
-    type: "single answer",
-  },
-  {
-    id: 20,
-    question: "How do you feel about your workplace right now?",
-    options: [
-      { letter: "A", emoji: "", text: "Good — I feel valued and it shows." },
-      { letter: "B", emoji: "", text: "Fine. It pays the bills and I've made peace with that." },
-      { letter: "C", emoji: "", text: "Tired. I'm doing good work in a system that doesn't reward it." },
-      { letter: "D", emoji: "", text: "I'm here physically. I left mentally a while ago." },
-      { letter: "E", emoji: "", text: "Looking. This is not it." },
+      { letter: "A", emoji: "", text: "Not much would change - I'm an open book" },
+      { letter: "B", emoji: "", text: "They'd learn a few things I've kept to myself" },
+      { letter: "C", emoji: "", text: "They'd be shocked by how much I hold back" },
+      { letter: "D", emoji: "", text: "Let's just say... it's better they never find out" },
     ],
     type: "single answer",
   },
@@ -272,7 +186,6 @@ export default function SurveyPage() {
   const [answers, setAnswers] = useState<SurveyAnswers>({});
   const [showSurveyComplete, setShowSurveyComplete] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [showPrelude, setShowPrelude] = useState(true);
   // Organization form state - removed email
   const [orgForm, setOrgForm] = useState({
     industry: "",
@@ -556,33 +469,6 @@ export default function SurveyPage() {
 
       <div className="max-w-[680px] mx-auto px-5 md:px-10 py-15 md:py-[60px] min-h-[calc(100vh-120px)] flex flex-col justify-center">
         <div className="animate-[slideIn_0.35s_ease_forwards]">
-          {/* Prelude — first slide */}
-          {showPrelude ? (
-            <div className="text-center">
-              <div className="text-[11px] font-semibold tracking-[3px] uppercase text-[#c0392b] mb-6">
-                Prelude
-              </div>
-              <p className="text-white/70 text-sm md:text-[15px] leading-relaxed mb-4">
-                You've survived the salary conversation. Now we're going deeper.
-              </p>
-              <p className="text-white/70 text-sm md:text-[15px] leading-relaxed mb-4">
-                This month, StreetAsk is asking about the thing that shapes your entire work experience — the Nigerian boss. How they lead. How they make you feel. Whether they follow any rules. And whether any of it is working.
-              </p>
-              <p className="text-white/70 text-sm md:text-[15px] leading-relaxed mb-4">
-                Five topics. Twenty questions. All anonymous. All honest.
-              </p>
-              <p className="text-white/50 text-sm italic mb-8">
-                Because someone has to ask.
-              </p>
-              <button
-                onClick={() => setShowPrelude(false)}
-                className="bg-[#8b1a1a] text-white px-8 py-3.5 rounded-lg text-[15px] font-semibold flex items-center gap-2 mx-auto transition-all hover:bg-[#c0392b] hover:-translate-y-px hover:shadow-[0_8px_20px_rgba(139,26,26,0.3)]"
-              >
-                Begin Survey →
-              </button>
-            </div>
-          ) : (
-            <div>
           <div className="font-['Playfair_Display'] text-2xl md:text-4xl font-bold text-white leading-tight mb-3">
             {q.question}
           </div>
@@ -608,8 +494,6 @@ export default function SurveyPage() {
               {isLastQuestion ? "Complete Survey →" : "Next →"}
             </button>
           </div>
-            </div>
-          )}
         </div>
       </div>
     </div>
