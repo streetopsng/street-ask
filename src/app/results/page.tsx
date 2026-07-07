@@ -92,20 +92,62 @@ export default function ResultsPage() {
   }, []);
 
   const questions: { id: number; text: string }[] = [
-    { id: 1, text: "If you're 100% honest, how truthful are you with your manager on a typical day at work?" },
-    { id: 2, text: "Your manager walks past your desk unannounced. What's the first thing that happens?" },
-    { id: 3, text: "It's 4:45pm and your manager is still in the office. What's your move?" },
-    { id: 4, text: "How do you talk about your manager when they're not in the room, versus when they are?" },
-    { id: 5, text: "You notice your manager taking credit for a colleague's work. What do you do?" },
-    { id: 6, text: "If you had to report something wrong at work, how would you prefer to do it?" },
-    { id: 7, text: "If reporting a wrongdoing could cost you your job, would you still do it?" },
-    { id: 8, text: "In your exit interview (real or imagined), what would you REALLY say about why you're leaving?" },
-    { id: 9, text: "Would you mention your manager by name if they were the real reason you left?" },
-    { id: 10, text: "Would you recommend your current company to a friend looking for a job?" },
-    { id: 11, text: "If you were rating your manager anonymously, how honest would you be — really?" },
-    { id: 12, text: "Have you ever given positive feedback you didn't fully believe, just to avoid conflict?" },
-    { id: 13, text: "Has fear of being identified ever stopped you from giving honest feedback?" },
-    { id: 14, text: "If your manager could read your mind for one day, how differently would things go?" },
+    {
+      id: 1,
+      text: "If you're 100% honest, how truthful are you with your manager on a typical day at work?",
+    },
+    {
+      id: 2,
+      text: "Your manager walks past your desk unannounced. What's the first thing that happens?",
+    },
+    {
+      id: 3,
+      text: "It's 4:45pm and your manager is still in the office. What's your move?",
+    },
+    {
+      id: 4,
+      text: "How do you talk about your manager when they're not in the room, versus when they are?",
+    },
+    {
+      id: 5,
+      text: "You notice your manager taking credit for a colleague's work. What do you do?",
+    },
+    {
+      id: 6,
+      text: "If you had to report something wrong at work, how would you prefer to do it?",
+    },
+    {
+      id: 7,
+      text: "If reporting a wrongdoing could cost you your job, would you still do it?",
+    },
+    {
+      id: 8,
+      text: "In your exit interview (real or imagined), what would you REALLY say about why you're leaving?",
+    },
+    {
+      id: 9,
+      text: "Would you mention your manager by name if they were the real reason you left?",
+    },
+    {
+      id: 10,
+      text: "Would you recommend your current company to a friend looking for a job?",
+    },
+    {
+      id: 11,
+      text: "If you were rating your manager anonymously, how honest would you be — really?",
+    },
+    {
+      id: 12,
+      text: "Have you ever given positive feedback you didn't fully believe, just to avoid conflict?",
+    },
+    {
+      id: 13,
+      text: "Has fear of being identified ever stopped you from giving honest feedback?",
+    },
+    {
+      id: 14,
+      text: "If your manager could read your mind for one day, how differently would things go?",
+    },
   ];
 
   const getAnswerText = (qId: number): string => {
@@ -165,7 +207,7 @@ export default function ResultsPage() {
             <div className="bg-gradient-to-br from-[#fff0e6] to-[#ffe4d4] rounded-2xl p-7 text-center mb-5 relative my-2">
               <div className="my-4">
                 <img
-                  src="https://res.cloudinary.com/deylyllwd/image/upload/v1780397940/street-ask-june_jlnk8e.jpg"
+                  src="https://res.cloudinary.com/deylyllwd/image/upload/v1783433367/street-ask-july_hdiq4q.png"
                   alt="image"
                 />
               </div>
